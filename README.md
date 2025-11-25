@@ -14,3 +14,7 @@ Eksamen 2025 / 1st. Semester / Multimedie / Jacob Gawad
 ## GITHUB PAGES :: https://iamjacob.github.io/spilcafe-exam/ 
 
 ## Link til docs (Brugerundersøgelse) ::
+
+
+
+### ALLE SPIL :: https://codepen.io/jacobgDK/pen/VYayJrX

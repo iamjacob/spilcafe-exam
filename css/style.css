@@ -7,6 +7,19 @@
     font-family: "Inter", sans-serif;
 }
 
+/* VARIABLER! */
+:root{
+    --primary-color: #FF4747;
+    --primary-color-light: #FF9292;
+    --background-color: #F2F2F2;
+    --text-color: #000000;
+    --card-background: #FFFFFF;
+}
+
+/* DarkMode! */
+
+
+/* RESPONSIVE! */
 
 header {
     padding: 0px 20px;
