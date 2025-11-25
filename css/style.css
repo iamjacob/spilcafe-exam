@@ -1,0 +1,593 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+
+header {
+    padding: 0px 20px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background: rgb(255, 255, 255);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 17px;
+}
+
+.search {
+    display: flex;
+    justify-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.searchAndFilters {
+    padding: 4px 0px;
+    width: 100%;
+}
+
+.searchInput {
+    gap: 8px;
+    display: flex;
+    border-radius: 9px;
+    background-color: #ebebeb;
+    width: 100%;
+    align-items: center;
+}
+
+button,
+input {
+    all: unset;
+}
+
+button,
+.searchInput {
+    height: 43px;
+    border-radius: 8px;
+    padding: 0px 12px;
+    background-color: #ebebeb;
+
+}
+
+button svg,
+.searchInput svg {
+    height: 18px;
+    width: 18px;
+}
+
+.searchInput input {
+    font-family: "Inter", sans-serif;
+    flex: flex-grow;
+    flex-grow: 1;
+}
+
+h1 {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+::placeholder {
+    font-size: 12px;
+    font-family: "Inter", sans-serif;
+    color: #000;
+}
+
+/* filters and chips */
+.filters {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    overflow-x: auto;
+    gap: 8px;
+    position: relative;
+}
+
+.filters::-webkit-scrollbar {
+    display: none;
+    /* hide scrollbar (Chrome, Safari) */
+}
+
+.chip {
+    background: #FF9292;
+    /*active FF4747*/
+    border-radius: 16px;
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 8px;
+    color: #fff;
+    height: 32px;
+    font-weight: 200;
+    white-space: nowrap;
+    user-select: none;
+    outline: none;
+}
+
+/* Prevent focus outline on chips */
+.chip:focus {
+    outline: none;
+}
+.chip:hover {
+    cursor: pointer;
+    background: #FF4747;
+}
+
+
+/*CARD COMPONENT*/
+main {
+    padding: 16px;
+    padding-top: 240px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-around;
+}
+
+main::after {
+    content: "";
+    flex: auto;
+}
+
+.card {
+    font-family: 'Inter', sans-serif;
+    justify-content: space-between;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    /* max-width: 169px; */
+    width: 140px;
+    height: 215px;
+    padding: 14px;
+    border-radius: 18px;
+    box-shadow: 1px 1px 1px 1px #00000025;
+}
+
+.card img {
+    width: 100%;
+    padding: 8px;
+    height: auto;
+}
+
+.card h2 {
+    width: 100%;
+    font: 'inter';
+    font-weight: bold;
+    text-align: left;
+    font-size: 16px;
+}
+
+.card__imageHolder {
+    width: 120px;
+    /* max-width: 145px; */
+    height: 120px;
+    /* max-height: 145px; */
+    border-radius: 12px;
+    background: #E3E3E3;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.card__rating {
+    height: 11px;
+    background: #878787;
+    border-radius: 9px;
+    font-size: 8px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    padding: 0 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+}
+
+.card__rating svg {
+    margin-right: 4px;
+
+}
+
+.card__info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    items-align: center;
+}
+
+.card__infoTAG {
+    font-size: 11px;
+    color: #6f6f6f;
+    display: flex;
+    align-items: center;
+}
+
+.card__infoTAG svg {
+    height: 11px;
+    width: 11px;
+    color: #6f6f6f;
+    margin-right: 4px;
+}
+
+/* Overlay + drawer */
+
+
+.overlay {
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    background: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    position: fixed;
+    bottom: 0;
+    z-index: 110;
+    border-radius: 18px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overlay active state for slide up animation */
+.overlay.overlay--active {
+    transform: translateY(0);
+}
+.overlay__header {
+    padding: 13px;
+}
+
+.topInfo {
+    display: flex;
+    padding: 0px 33px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    margin: 0px;
+    font-size: 20px;
+}
+
+.title h2, .shortDesc{
+    text-align: center;
+}
+
+.gameinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.shortDesc {
+    font-size: 12px;
+}
+
+.overlay__main {}
+
+.overlay__main img {
+    width: 170px;
+    height: 170px;
+}
+
+.drawer.open {
+    max-height: 450PX;
+}
+
+.drawer {
+    display: flex;
+    position: absolute;
+    border-radius: 24px 24px 0px 0px;
+    background: #fff;
+    bottom: 0px;
+    width: 100%;
+    max-height: 80px;
+    flex-direction: column;
+    align-items: center;
+    transition: max-height 0.4s ease;
+    padding: 8px;
+    box-shadow: 4px 4px solid #00000025;
+}
+
+.drawHandle {
+    background: #BF171C;
+    height: 5px !important;
+    width: 48px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.drawer p {
+    padding: 8px;
+    font-weight: 100;
+    font-size: 14px;
+    text-wrap: pretty;
+}
+
+.overlay .card__rating {
+    height: 22px;
+    width: 50px;
+    background: #878787;
+    border-radius: 9px;
+    font-size: 16px;
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    padding: 0 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+}
+
+.rating-dices {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.rating-dices svg {
+    animation: roll-dice 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+    /* Each dice will get a different delay using nth-child */
+}
+
+.rating-dices svg:nth-child(1) { animation-delay: 0s; }
+.rating-dices svg:nth-child(2) { animation-delay: 0.1s; }
+.rating-dices svg:nth-child(3) { animation-delay: 0.2s; }
+.rating-dices svg:nth-child(4) { animation-delay: 0.3s; }
+.rating-dices svg:nth-child(5) { animation-delay: 0.4s; }
+.rating-dices svg:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes roll-dice {
+    0%   { transform: scale(1) rotate(0deg); opacity: 0.5; }
+    40%  { transform: scale(1.3) rotate(180deg); opacity: 1; }
+    80%  { transform: scale(0.9) rotate(270deg); opacity: 1; }
+    100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.overlay .card__rating svg {
+    margin-right: 4px;
+}
+
+.info {
+    padding: 10px 55px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.boks {
+    width: 50%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.boks span {
+    padding-top: 4px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.chip-dropdown{
+    /* position: fixed; */
+    /* z-index: 10000; */
+    padding: 10px;
+    display: flex;
+    overflow-x: auto;
+    /* flex-direction: column; */
+    gap: 4px;
+    background: #fff;
+    border-radius: 8px;
+    /* width: 100px; */
+    margin: 8px 0px;
+}
+
+.chip-dropdown .chip {
+    border: 1px solid #FF4747;
+    background-color: #fff;
+    color:#FF4747;
+    height: 28px;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.chip-dropdown::-webkit-scrollbar {
+    display: none;
+    /* hide scrollbar (Chrome, Safari) */
+}
+
+/* Invisible overlay for sub-filters dropdown */
+.sub-filters-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 199;
+    display: none;
+}
+/*chips overlay from ai*/
+/* NOT WORKING YET */
+
+.sub-filters{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    justify-content: space-around;
+    padding: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    gap: 8px;
+    position: absolute;
+    border:1px solid #FF4747;
+    border-radius:8px;
+    z-index: 200; /* Increased z-index for higher stacking */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+}
+
+.sub-filters .sub-chip{
+    border: 1px solid #FF4747;
+    background-color: #fff;
+    color:#FF4747;
+    height: 28px;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.sub-filters .sub-chip.active{
+    background: #FF4747;
+    color: #fff;
+}
+
+.sub-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chip.active + .sub-filters {
+  display: block;
+  position: relative;
+  margin-top: 5px;
+}
+
+.selected-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom:8px;
+}
+
+.selected-chip {
+  background-color: #fff;
+  border: 2px solid #BF171C;
+  border-radius: 20px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #721c24;
+  
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.selected-chip button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.game-list-empty{
+    text-align: center;
+    margin-top: 160px;
+    width: 100%;
+}
+
+.shake {
+  animation: shake 900ms;
+  animation-iteration-count: 2;
+  animation-fill-mode: both;
+}
+
+
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(-10px) rotate(-5deg);
+  }
+  20% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  30% {
+    transform: translateX(-10px) rotate(-5deg);
+  }
+  40% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(-10px) rotate(-5deg);
+  }
+  60% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  70% {
+    transform: translateX(-10px) rotate(-5deg);
+  }
+  80% {
+    transform: translateX(10px) translateY(10px)  rotate(5deg);
+  }
+  90% {
+    transform: translateX(-10px) translateY(-10px) rotate(-5deg);
+  }
+}
+
+.brutal-shake {
+  animation: brutal-shake 1s;
+  animation-iteration-count: 3;
+  animation-fill-mode: both;
+}
+
+.overlay-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+      margin: 44px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content button {
+    font-size:18px ;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #FF4747;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background: #FF9292;
+}
