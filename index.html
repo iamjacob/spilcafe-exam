@@ -2,22 +2,19 @@
 <html lang="en">
 
 <head>
+    <title>Spilcaféen</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spilcaféen</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
 </head>
 
 <body>
-
     <header>
         <div class="header-top">
-
-<a href="/spilcafe/">
-    <img src="./assets/img/logo.webp" width="92" height="70" alt="logo">
-</a>
-
+            <a href="/spilcafe/">
+                <img src="./assets/img/logo.webp" width="92" height="70" alt="logo">
+            </a>
 
             <h1>Spiloversigt</h1>
 
@@ -27,7 +24,8 @@
         <div class="selected-chips"></div>
         <div class="searchAndFilters">
             <div class="search">
-                <button onclick="openShakePopup()"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button onclick="openShakePopup()"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M31.1295 3.98739C31.4605 3.38154 32.2198 3.15871 32.8257 3.48968C33.3573 3.78013 34.0835 4.33851 34.7988 5.20716C35.5188 6.08158 36.0727 7.11333 36.3922 8.30589C36.8578 10.0442 36.7167 11.6985 36.1998 13.168C36.019 13.682 35.8312 14.0656 35.6885 14.3003C35.3295 14.8901 34.5605 15.0772 33.9708 14.7184C33.4302 14.3894 33.2278 13.7158 33.4743 13.1516L33.5528 13.0007C33.61 12.9067 33.7223 12.6773 33.8415 12.3384C34.2023 11.3125 34.3007 10.1598 33.9773 8.95286C33.7545 8.12079 33.3703 7.40536 32.8688 6.79629C32.3785 6.20091 31.8992 5.83223 31.6272 5.68364C31.0213 5.35269 30.7985 4.59324 31.1295 3.98739Z"
                             fill="#212121" />
@@ -61,9 +59,10 @@
                     <div class="sub-chip" data-location="Vestergade">Aarhus Vestergade</div>
                     <div class="sub-chip" data-location="Fredensgade">Aarhus Fredensgade</div>
                     <div class="sub-chip" data-location="Kolding">Kolding</div>
+                    <div class="sub-chip" data-location="Odense">Odense</div>
                     <div class="sub-chip" data-location="auto">Auto (Use GPS)</div>
                 </div>
-                    
+
                 <div class="searchInput">
                     <div class="magnifier">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -77,29 +76,38 @@
                 </div>
             </div>
         </div>
-<div class="filters"><div class="chip" data-filter="location"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-map-pin-icon lucide-map-pin">
-                        <path
-                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg></div>
-    <div class="chip" data-filter="players">Antal spillere</div>
-    <div class="chip" data-filter="genre">Genre</div>
-    <div class="chip" data-filter="difficulty">Sværhedsgrad</div>
-    <div class="chip" data-filter="time">Spilletid</div>
-    <div class="chip" data-filter="sort"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-filter-plus-icon lucide-list-filter-plus"><path d="M12 5H2"/><path d="M6 12h12"/><path d="M9 19h6"/><path d="M16 5h6"/><path d="M19 8V2"/></svg></div>
-    
-</div>
+        <div class="filters">
+            <div class="chip" data-filter="location"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                    <path
+                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                    <circle cx="12" cy="10" r="3" />
+                </svg></div>
+            <div class="chip" data-filter="players">Antal spillere</div>
+            <div class="chip" data-filter="genre">Genre</div>
+            <div class="chip" data-filter="difficulty">Sværhedsgrad</div>
+            <div class="chip" data-filter="time">Spilletid</div>
+            <div class="chip" data-filter="sort"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-list-filter-plus-icon lucide-list-filter-plus">
+                    <path d="M12 5H2" />
+                    <path d="M6 12h12" />
+                    <path d="M9 19h6" />
+                    <path d="M16 5h6" />
+                    <path d="M19 8V2" />
+                </svg></div>
 
-<!-- <div class="sub-filters">
+        </div>
+
+        <!-- <div class="sub-filters">
 
 </div> -->
 
 
     </header>
 
-<!-- https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json -->
+    <!-- https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json -->
 
     <!-- main content -->
 
@@ -110,25 +118,26 @@
     </main>
 
     <!-- drawer -->
-<div id="drawHolder">
+    <div id="drawHolder">
 
 
-</div>
-
-
-<div id="shakePopup" class="overlay-popup" style="display: none;">
-    <div class="popup-content">
-        <p style="color:red;font-size:0.95em;margin-top:10px;">Svært at bestemme sig?<br>Ryst din 📱(android)<br> shake it to the max! ⚡(skru op for lyden!)</p>
-    <button onclick="closeShakeAndEnableMotion();">klar</button>
-    <button onclick="testForIphone()">Har iphone</button>
-        <!-- <button style="position:fixed;bottom:10px;right:10px;z-index:9999;" onclick="window.enableShakeDetection()">Test Shake Setup</button> -->
     </div>
-</div>
 
-<!-- Debug/Test button for shake setup -->
 
-      
-        <script src="./js/app.js"></script>
+    <div id="shakePopup" class="overlay-popup" style="display: none;">
+        <div class="popup-content">
+            <p style="color:red;font-size:0.95em;margin-top:10px;">Svært at bestemme sig?<br>Ryst din 📱(android)<br>
+                shake it to the max! ⚡(skru op for lyden!)</p>
+            <button onclick="closeShakeAndEnableMotion();">klar</button>
+            <button onclick="testForIphone()">Har iphone</button>
+            <!-- <button style="position:fixed;bottom:10px;right:10px;z-index:9999;" onclick="window.enableShakeDetection()">Test Shake Setup</button> -->
+        </div>
+    </div>
+
+    <!-- Debug/Test button for shake setup -->
+
+
+    <script src="./js/app.js"></script>
 
 </body>
 
