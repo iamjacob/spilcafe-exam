@@ -120,7 +120,7 @@ function createDice(x, y, z) {
 // Plane
 const planeGeometry = new THREE.PlaneGeometry(200, 200)
 const planeMaterial = new THREE.MeshStandardMaterial({ 
-  color: 0xe9e464,
+  color: 0xBF171C,
   side: THREE.DoubleSide
 })
 const plane = new THREE.Mesh(planeGeometry, planeMaterial)
