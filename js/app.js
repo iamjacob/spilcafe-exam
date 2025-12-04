@@ -44,27 +44,28 @@ let allGames = []; // Declare allGames globally to access it in displayDrawer
 async function getGames() {
   try {
     // console.log("🌐 Henter alle spil fra JSON...");
-    const response = await fetch(
-      "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json"
+    const response = await fetch("./assets/games/games.json"
     );
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status} ${response.statusText}`);
     }
-    allGames = await response.json();
-    allGames;
     // console.log(`📊 JSON data modtaget: ${allGames.length} games`);
-
+    
+    allGames = await response.json();
     // populateGenreDropdown();
     // filterMovies();
     // console.log(allGames);
-
+    
     displayGames(allGames);
   } catch (error) {
     console.error("❌ Kunne ikke hente games:", error);
     resultater.innerHTML =
-      '<div class="game-list-empty"><p>🚨 Kunne ikke hente Games.</p></div>';
+    '<div class="game-list-empty"><p>🚨 Kunne ikke hente Games.</p></div>';
+  } finally {
+    console.log("first allGames in finally line 66");
   }
+
 }
 
 function closeShakeAndEnableMotion() {
@@ -124,6 +125,15 @@ getGames();
 //filterGames()
 
 let drawHolder = document.getElementById("drawHolder");
+
+
+
+function addToFavorites(id) {
+  console.log(`Tilføj til favoritter: Game ID ${id}`);
+  localStorage.setItem(`favorite_game_${id}`, "true");
+  console.log("Tilføjet til favoritter");
+}
+
 
 function displayDrawer(id) {
   console.log(id);
@@ -299,6 +309,12 @@ function filterGames() {
     }
   });
 
+  //ADD TO SWITCH POPULARITY
+
+  /*
+  case "popularity" allGames where in localstorage and array? :)
+  */
+
   displayGames(filteredGames);
 }
 
@@ -313,6 +329,51 @@ function renderSubChips(filter) {
     subChipsContainer.style.display = "none";
     return;
   }
+
+  if(filter == "players"){
+    //skal ind i html ...
+
+    subFiltersUnder.innerHTML=`
+    <div id="form-wrapper">
+	<form method="GET">
+		<h1 id="form-title">Hvor mange antal spillere?</h1>
+		<div id="debt-amount-slider">
+			<input type="radio" name="debt-amount" id="1" value="1" required>
+			<label for="1" data-debt-amount="2"></label>
+			<input type="radio" name="debt-amount" id="2" value="2" required>
+			<label for="2" data-debt-amount="4"></label>
+			<input type="radio" name="debt-amount" id="3" value="3" required>
+			<label for="3" data-debt-amount="6"></label>
+			<input type="radio" name="debt-amount" id="4" value="4" required>
+			<label for="4" data-debt-amount="8"></label>
+			<input type="radio" name="debt-amount" id="5" value="5" required>
+			<label for="5" data-debt-amount="10"></label>
+			<div id="debt-amount-pos"></div>
+		</div>
+	</form>
+
+</div>
+    `;
+    return
+  }else{
+    subFiltersUnder.innerHTML=``;
+  }
+
+    if(filter == "difficulty"){
+    //skal ind i html ...
+
+    subFiltersUnder.innerHTML=`
+<div class="difficulty-info">
+
+
+</div>
+
+    `;
+    return
+  }else{
+    subFiltersUnder.innerHTML=``;
+  }
+
 
   subChipsContainer.style.display = "flex";
   subChipsContainer.style.position = "absolute";
@@ -370,6 +431,7 @@ let selected = {};
 
 const filtersContainer = document.querySelector(".filters");
 const subChipsContainer = document.querySelector(".sub-filters");
+const subFiltersUnder = document.querySelector(".sub-filters-under");
 
 filtersContainer.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
@@ -460,12 +522,12 @@ function shakeItToTheMax() {
 
   function playSound() {
     const audio = new Audio("./assets/audio/shake.mp3");
+    audio.play();
 
     navigator.vibrate(100);
     navigator.vibrate(400);
     navigator.vibrate(200);
 
-    audio.play();
   }
   playSound();
 
@@ -487,6 +549,8 @@ function openShakePopup() {
 }
 
 window.addEventListener("popstate", () => {
+// So there most be one for pushstate, a listener too ahhh.. :D Or another way to make url query work.
+
   const params = new URLSearchParams(window.location.search);
   const contextStore = {};
 
