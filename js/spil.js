@@ -15,7 +15,7 @@ let height = Math.max(window.innerHeight, 480)
 let composer, body
 let isRotating = false
 let dices = []
-let diceAmount = 6
+let diceAmount = 2
 let accumulator = 0
 let lastTime = 0
 
@@ -25,14 +25,14 @@ const resizeObserver = new ResizeObserver(resizeUpdate)
 resizeObserver.observe(document.body)
 window.addEventListener('resize', () => resizeUpdate())
 document.getElementById('roll').addEventListener('click', addDices)
-document.getElementById('decrease').addEventListener('click', () => {
-  diceAmount = Math.max(--diceAmount, 1)
-  document.querySelector('#amount').innerHTML = diceAmount
-})
-document.getElementById('increase').addEventListener('click', () => {
-  diceAmount = Math.min(++diceAmount, 12)
-  document.querySelector('#amount').innerHTML = diceAmount
-})
+// document.getElementById('decrease').addEventListener('click', () => {
+//   diceAmount = Math.max(--diceAmount, 1)
+//   document.querySelector('#amount').innerHTML = diceAmount
+// })
+// document.getElementById('increase').addEventListener('click', () => {
+//   diceAmount = Math.min(++diceAmount, 12)
+//   document.querySelector('#amount').innerHTML = diceAmount
+// })
 
 
 // Physics
@@ -40,7 +40,7 @@ const world = new OIMO.World({
   timestep: 1 / 60, 
   iterations: 8, 
   broadphase: 2, 
-  worldscale: 1, 
+  worldscale: .5, 
   random: true, 
   info: false,
   gravity: [0, -9.8 * 3, 0]

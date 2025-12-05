@@ -23,6 +23,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
+    box-sizing: border-box;
   /* font-family: 'JetBrains Mono', monospace; */
 
 }
@@ -42,12 +43,12 @@ body {
 /* RESPONSIVE! */
 
 header {
-    padding: 0px 20px;
+    padding: 0px 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     z-index: 100;
     width: 100%;
-    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .header-top {
@@ -55,8 +56,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100px;
-    padding: 17px;
+    height: 70px;
 }
 
 .search {
@@ -75,9 +75,28 @@ header {
     gap: 8px;
     display: flex;
     border-radius: 9px;
-    background-color: #ebebeb;
+    margin: 0 8px;
+    /* background-color: #ebebeb; */
+    border: 1px solid #BF171C;
     width: 100%;
+    height: 43px;
+    border-radius: 8px;
+    padding: 0px 12px;
     align-items: center;
+}
+
+
+
+
+.filters button{
+    height: auto;
+    background-color: #fff;
+    /* border: 1px solid #A1A1A1; */
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #0a0a0a;
+    fill: #0a0a0a;
+
 }
 
 button,
@@ -85,14 +104,13 @@ input {
     all: unset;
 }
 
-button,
-.searchInput {
+/* .searchInput {
     height: 43px;
     border-radius: 8px;
     padding: 0px 12px;
     background-color: #ebebeb;
 
-}
+} */
 
 button svg,
 .searchInput svg {
@@ -121,7 +139,7 @@ h1 {
 .filters {
     display: flex;
     justify-content: space-around;
-    padding: 8px 0;
+    padding: 8px;
     overflow-x: auto;
     gap: 8px;
     position: relative;
@@ -135,6 +153,9 @@ h1 {
 .chip {
     /* background: #FF9292; */
     /*active FF4747*/
+    display: flex;
+    align-items: center;
+text-decoration: none;
     border-radius: 16px;
     padding: 8px 12px;
     font-size: 12px;
@@ -161,7 +182,7 @@ h1 {
 /*CARD COMPONENT*/
 main {
     padding: 16px;
-    padding-top: 240px;
+    padding-top: 85px;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -209,7 +230,7 @@ main::after {
     /* max-width: 145px; */
     height: 120px;
     /* max-height: 145px; */
-    border-radius: 12px;
+    border-radius: 8px;
     background: #E3E3E3;
     display: flex;
     justify-content: center;
@@ -217,14 +238,13 @@ main::after {
 }
 
 .card__rating {
-    height: 11px;
     background: #878787;
     border-radius: 9px;
-    font-size: 8px;
+    font-size: 12px;
     position: absolute;
     right: 8px;
     top: 8px;
-    padding: 0 4px;
+    padding: 2px 4px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -874,7 +894,7 @@ form:invalid + button {
 
 
 .footer-nav{
-    padding: 0px 20px;
+    padding: 0px 0px;
     box-shadow: 2px -2px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     z-index: 100;
@@ -882,4 +902,23 @@ form:invalid + button {
     display: flex;
     bottom:0;
     background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.chip-info{
+    position: fixed;
+    bottom: 60px;
+    right: 16px;
+    background-color: #FF4747;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    z-index: 100;
+}
+
+.back{
+    fill:#000000;
+    width: 44px;
+    height: 44px;
 }

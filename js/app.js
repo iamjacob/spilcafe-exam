@@ -1,40 +1,5 @@
-/*
-https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json
-  {
-    "id": 1,
-    "title": "Matador",
-    "description": "Dansk klassiker inspireret af Monopoly.",
-    "image": "https://raw.githubusercontent.com/cederdorff/race/master/images/games/matador.webp",
-    "genre": "Familie",
-    "playtime": 120,
-    "players": { "min": 2, "max": 6 },
-    "language": "Dansk",
-    "rating": 4.0,
-    "age": 8,
-    "difficulty": "Let",
-    "location": "Vestergade",
-    "shelf": "A3",
-    "available": true,
-    "rules": "Spillerne bevæger sig rundt på brættet og køber ejendomme. Når andre lander på dine felter, betaler de leje. Den sidste spiller, der ikke går bankerot, vinder. Start med 30.000 kr. og få 4.000 kr. hver gang du passerer START. Byg huse og hoteller for at øge lejen. Særlige felter inkluderer Fængsel, Gratis Parkering og forskellige skattekort."
-  },
-*/
-// let allGames = [];
-
 //#1
 //Check alle popstates og tilføj ved load for at have dynamisk url!
-
-//#2
-//local json istedet.. for at optimere
-
-//#3
-//locale billeder også? så kan den køre offline!?'ish
-
-//#4
-//  navigator.vibrate(100)
-//  navigator.vibrate(400)
-//  navigator.vibrate(200)
-
-//#5 - font locale also!!
 
 //#6 - dices
 
@@ -44,28 +9,26 @@ let allGames = []; // Declare allGames globally to access it in displayDrawer
 async function getGames() {
   try {
     // console.log("🌐 Henter alle spil fra JSON...");
-    const response = await fetch("./assets/games/games.json"
-    );
+    const response = await fetch("./assets/games/games.json");
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status} ${response.statusText}`);
     }
     // console.log(`📊 JSON data modtaget: ${allGames.length} games`);
-    
+
     allGames = await response.json();
     // populateGenreDropdown();
     // filterMovies();
     // console.log(allGames);
-    
+
     displayGames(allGames);
   } catch (error) {
     console.error("❌ Kunne ikke hente games:", error);
     resultater.innerHTML =
-    '<div class="game-list-empty"><p>🚨 Kunne ikke hente Games.</p></div>';
+      '<div class="game-list-empty"><p>🚨 Kunne ikke hente Games.</p></div>';
   } finally {
     console.log("first allGames in finally line 66");
   }
-
 }
 
 function closeShakeAndEnableMotion() {
@@ -86,6 +49,9 @@ function displayGames(games) {
   }
 
   console.log(`🎬 Viser ${games.length} game`);
+  document.getElementById(
+    "chip-info"
+  ).innerText = `${games.length} / ${allGames.length} spil`;
 
   for (const game of games) {
     displayGame(game);
@@ -98,7 +64,7 @@ function displayGame(game) {
     <div class="card" onclick="displayDrawer(${game.id})">
 	<div class="card__imageHolder">
 		<div class="card__rating">
-			<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg width="16" height="14" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M2.06919 6.79995L2.66502 4.35969L0.666687 2.71837L3.30669 2.50127L4.33335 0.199951L5.36002 2.50127L8.00002 2.71837L6.00169 4.35969L6.59752 6.79995L4.33335 5.506L2.06919 6.79995Z" fill="#F2CE17"/>
 </svg>
             ${game.rating}
@@ -111,9 +77,9 @@ function displayGame(game) {
 	<h2>${game.title}</h2>
 
 	<div class="card__info">
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> ${game.players.min}- ${game.players.max}</div>
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> ${game.playtime} m.</div>
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${game.age}</div>
+		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> ${game.players.min}-${game.players.max}</div>
+		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> ${game.playtime} m.</div>
+		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${game.age}+</div>
 	</div>
 </div>
   `;
@@ -126,14 +92,11 @@ getGames();
 
 let drawHolder = document.getElementById("drawHolder");
 
-
-
 function addToFavorites(id) {
   console.log(`Tilføj til favoritter: Game ID ${id}`);
   localStorage.setItem(`favorite_game_${id}`, "true");
   console.log("Tilføjet til favoritter");
 }
-
 
 function displayDrawer(id) {
   console.log(id);
@@ -145,6 +108,8 @@ function displayDrawer(id) {
     console.error(`Game with id ${id} not found.`);
     return;
   }
+
+  //try dialog here now!!
 
   drawHolder.innerHTML = `
     <div class="overlay" id="overlay">
@@ -330,10 +295,10 @@ function renderSubChips(filter) {
     return;
   }
 
-  if(filter == "players"){
+  if (filter == "players") {
     //skal ind i html ...
 
-    subFiltersUnder.innerHTML=`
+    subFiltersUnder.innerHTML = `
     <div id="form-wrapper">
 	<form method="GET">
 		<h1 id="form-title">Hvor mange antal spillere?</h1>
@@ -354,26 +319,25 @@ function renderSubChips(filter) {
 
 </div>
     `;
-    return
-  }else{
-    subFiltersUnder.innerHTML=``;
+    return;
+  } else {
+    subFiltersUnder.innerHTML = ``;
   }
 
-    if(filter == "difficulty"){
+  if (filter == "difficulty") {
     //skal ind i html ...
 
-    subFiltersUnder.innerHTML=`
+    subFiltersUnder.innerHTML = `
 <div class="difficulty-info">
 
 
 </div>
 
     `;
-    return
-  }else{
-    subFiltersUnder.innerHTML=``;
+    return;
+  } else {
+    subFiltersUnder.innerHTML = ``;
   }
-
 
   subChipsContainer.style.display = "flex";
   subChipsContainer.style.position = "absolute";
@@ -527,7 +491,6 @@ function shakeItToTheMax() {
     navigator.vibrate(100);
     navigator.vibrate(400);
     navigator.vibrate(200);
-
   }
   playSound();
 
@@ -549,7 +512,7 @@ function openShakePopup() {
 }
 
 window.addEventListener("popstate", () => {
-// So there most be one for pushstate, a listener too ahhh.. :D Or another way to make url query work.
+  // So there most be one for pushstate, a listener too ahhh.. :D Or another way to make url query work.
 
   const params = new URLSearchParams(window.location.search);
   const contextStore = {};
@@ -903,36 +866,3 @@ locationDropdown.addEventListener("click", (e) => {
   // Hide dropdown after selection
   locationDropdown.style.display = "none";
 });
-
-// (function () {
-//   // Create an on-screen log panel
-//   const logDiv = document.createElement("div");
-//   logDiv.id = "log";
-//   logDiv.style.position = "fixed";
-//   logDiv.style.bottom = "0";
-//   logDiv.style.left = "0";
-//   logDiv.style.right = "0";
-//   logDiv.style.background = "rgba(0,0,0,0.7)";
-//   logDiv.style.color = "lime";
-//   logDiv.style.fontSize = "12px";
-//   logDiv.style.padding = "5px";
-//   logDiv.style.zIndex = "9999";
-//   logDiv.style.maxHeight = "30vh";
-//   logDiv.style.overflowY = "auto";
-//   document.body.appendChild(logDiv);
-
-//   // Keep original console.log
-//   const originalLog = console.log;
-
-//   // Overwrite it
-//   console.log = function (...args) {
-//     // Log to screen
-//     logDiv.innerHTML += args.join(" ") + "<br>";
-//     logDiv.scrollTop = logDiv.scrollHeight;
-
-//     // Also log to real console (in case you connect Safari DevTools)
-//     originalLog.apply(console, args);
-//   };
-
-//   console.error = console.warn = console.log; // optional: also capture warnings & errors
-// })();

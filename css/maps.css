@@ -1,0 +1,95 @@
+body,
+html {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#map {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    height: 150px;
+    width: 250px;
+    outline: 1px solid red;
+    border-radius: 15px;
+    touch-action: none;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#information {
+    position: fixed;
+    z-index: 500;
+    bottom: 0;
+    height: fit-content;
+    width: fit-content;
+    background: rgba(255, 255, 255, .5);
+    background: #4aa498;
+    margin: 8px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#location {
+    cursor: pointer;
+    position: fixed;
+    z-index: 500;
+    bottom: 150px;
+    right: 0;
+    font-size: 12px;
+    width: fit-content;
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid #000;
+    margin: 8px;
+    border-radius: 10px;
+    padding: 4px;
+    text-align: center;
+}
+
+select {
+    all: unset;
+    font-family: sans-serif;
+    width: fit-content;
+}
+
+select option {
+    background: #ffffff50;
+}
+
+.leaflet-bottom.leaflet-right,
+.leaflet-top.leaflet-left {
+    display: none;
+}
+
+/*
+*/
+#information span {
+    display: block;
+    padding: 8px 8px;
+    margin: 8px 0px;
+    outline: 1px solid #333;
+    border-radius: 4px;
+}
+
+.marker-cluster div {
+    background-color: #4aa498 !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-large {
+    background-color: #4aa49890 !important;
+}
