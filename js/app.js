@@ -3,8 +3,16 @@
 
 //#6 - dices
 
-let resultater = document.getElementById("results");
 let allGames = []; // Declare allGames globally to access it in displayDrawer
+let resultater = document.getElementById("results");
+const locationData = document.getElementById("locationData");
+const locationsForm = document.querySelector(".locationsForm");
+const playersForm = document.querySelector(".playersForm");
+const timeForm = document.querySelector(".timeForm");
+const difficultyForm = document.querySelector(".difficultyForm");
+const genreForm = document.querySelector(".genreForm");
+const sortForm = document.querySelector(".sortForm");
+const mainHolder = document.querySelector("main");
 
 async function getGames() {
   try {
@@ -77,12 +85,12 @@ function displayGame(game) {
 	<h2>${game.title}</h2>
 
 	<div class="card__info">
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> ${game.players.min}-${game.players.max}</div>
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> ${game.playtime} m.</div>
-		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${game.age}+</div>
-	</div>
-</div>
-  `;
+		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg> ${game.players.min}-${game.players.max}</div>
+		<div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> ${game.playtime} m.</div>
+    </div>
+    </div>
+    `;
+  // <div class="card__infoTAG"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ${game.age}+</div>
 
   resultater.insertAdjacentHTML("beforeend", gameHTML);
 }
@@ -295,48 +303,41 @@ function renderSubChips(filter) {
     return;
   }
 
-  if (filter == "players") {
-    //skal ind i html ...
-
-    subFiltersUnder.innerHTML = `
-    <div id="form-wrapper">
-	<form method="GET">
-		<h1 id="form-title">Hvor mange antal spillere?</h1>
-		<div id="debt-amount-slider">
-			<input type="radio" name="debt-amount" id="1" value="1" required>
-			<label for="1" data-debt-amount="2"></label>
-			<input type="radio" name="debt-amount" id="2" value="2" required>
-			<label for="2" data-debt-amount="4"></label>
-			<input type="radio" name="debt-amount" id="3" value="3" required>
-			<label for="3" data-debt-amount="6"></label>
-			<input type="radio" name="debt-amount" id="4" value="4" required>
-			<label for="4" data-debt-amount="8"></label>
-			<input type="radio" name="debt-amount" id="5" value="5" required>
-			<label for="5" data-debt-amount="10"></label>
-			<div id="debt-amount-pos"></div>
-		</div>
-	</form>
-
-</div>
-    `;
-    return;
+  if (filter == "location") {
+    locationsForm.style.display = "flex";
   } else {
-    subFiltersUnder.innerHTML = ``;
+    locationsForm.style.display = "none";
+  }
+
+  if (filter == "players") {
+    playersForm.style.display = "flex";
+
+  } else {
+    playersForm.style.display = "none";
   }
 
   if (filter == "difficulty") {
-    //skal ind i html ...
+    difficultyForm.style.display = "flex";
+   } else {
+    difficultyForm.style.display = "none";
+  }
 
-    subFiltersUnder.innerHTML = `
-<div class="difficulty-info">
-
-
-</div>
-
-    `;
-    return;
+  if (filter == "time") {
+    timeForm.style.display = "flex";
   } else {
-    subFiltersUnder.innerHTML = ``;
+    timeForm.style.display = "none";
+  }
+
+  if (filter == "genre") {
+    genreForm.style.display = "flex";
+  } else {
+    genreForm.style.display = "none";
+  }
+
+  if (filter == "sort") {
+    sortForm.style.display = "flex";
+  } else {
+    sortForm.style.display = "none";
   }
 
   subChipsContainer.style.display = "flex";
@@ -380,14 +381,14 @@ const filters = {
   difficulty: ["Let", "Mellem", "Svær"],
   time: ["20 min.", "30 min.", "60 min.", "120 min."],
   sort: ["A-Z", "Z-A", "År", "Rating"],
-  location: [
-    "Vestergade",
-    "Fredensgade",
-    "Aalborg",
-    "Kolding",
-    "auto",
-    "other",
-  ],
+  // location: [
+  //   "Vestergade",
+  //   "Fredensgade",
+  //   "Aalborg",
+  //   "Kolding",
+  //   "auto",
+  //   "other",
+  // ],
 };
 
 let activeFilter = null;
@@ -410,13 +411,13 @@ filtersContainer.addEventListener("click", (e) => {
     .querySelectorAll(".chip")
     .forEach((c) => c.classList.remove("active"));
 
-  // Toggle open/close of the current filter
-  if (activeFilter === filter) {
-    activeFilter = null;
-    subChipsContainer.style.display = "none";
+  // // Toggle open/close of the current filter
+  // if (activeFilter === filter) {
+  //   activeFilter = null;
+  //   subChipsContainer.style.display = "none";
 
-    return;
-  }
+  //   return;
+  // }
 
   chip.classList.add("active");
   activeFilter = filter;
@@ -562,18 +563,13 @@ window.addEventListener("popstate", () => {
     );
   }
 
+  if (contextStore.location) {
+  flyToLocation(contextStore.location);
+}
+
+
   displayGames(filteredGames);
 });
-
-// let items = [];
-// fetch(
-//   "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/games.json"
-// )
-//   .then((res) => res.json())
-//   .then((data) => {
-//     items = data;
-//     console.log("Loaded: " + items.length + " items");
-//   });
 
 document.body.insertAdjacentHTML(
   "beforeend",
@@ -814,55 +810,123 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
 // });
 
 // Add event listener for dropdown items
-const locationDropdown = document.getElementById("locationDropdown");
-locationDropdown.addEventListener("click", (e) => {
-  const item = e.target.closest(".dropdown-item");
+// const locationDropdown = document.getElementById("locationDropdown");
+// locationDropdown.addEventListener("click", (e) => {
+//   const item = e.target.closest(".dropdown-item");
 
-  if (!item) return;
+//   if (!item) return;
 
-  if (item == "all") return; //then none is choosen so give all locations
+//   if (item == "all") return; //then none is choosen so give all locations
 
-  const location = item.dataset.location;
+//   const location = item.dataset.location;
+//   selected.location = location;
+
+//   // If "auto" is selected, request GPS permission
+//   if (location === "auto") {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition((position) => {
+//         const { latitude, longitude } = position.coords;
+//         console.log("User's location:", latitude, longitude);
+
+//         const locations = [
+//           { name: "Aalborg", lat: 57.0488, lon: 9.9217 },
+//           { name: "Vestergade", lat: 56.162939, lon: 10.203921 },
+//           { name: "Fredensgade", lat: 56.162939, lon: 10.203921 },
+//           { name: "Kolding", lat: 55.4904, lon: 9.4722 },
+//         ];
+
+//         let closestLocation = locations[0];
+//         let minDistance = Number.MAX_VALUE;
+
+//         locations.forEach((loc) => {
+//           const distance = Math.sqrt(
+//             Math.pow(latitude - loc.lat, 2) + Math.pow(longitude - loc.lon, 2)
+//           );
+//           if (distance < minDistance) {
+//             minDistance = distance;
+//             closestLocation = loc;
+//           }
+//         });
+
+//         selected.location = closestLocation.name;
+//         console.log("Closest location:", selected.location);
+//         filterGames();
+//       });
+//     } else {
+//       console.error("Geolocation is not supported by this browser.");
+//     }
+//   } else {
+//     filterGames();
+//   }
+
+//   // Hide dropdown after selection
+//   locationDropdown.style.display = "none";
+// });
+const locationCoords = {
+  "aarhus-fredensgade": { lat: 56.16294, lng: 10.20392, zoom: 15 },
+  "aarhus-vestergade": { lat: 56.1589, lng: 10.2046, zoom: 15 },
+  "odense": { lat: 55.4038, lng: 10.4024, zoom: 13 },
+  "kolding": { lat: 55.4904, lng: 9.4722, zoom: 13 },
+  "aalborg": { lat: 57.0488, lng: 9.9217, zoom: 13 }
+};
+
+
+function flyToLocation(locationKey) {
+  const loc = locationCoords[locationKey];
+  // locationData.innerText = locationKey.replace("-", " ").toUpperCase();
+  locationData.innerText =
+  locationKey
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+
+  if (!loc || !window.map) return;
+
+  map.flyTo([loc.lat, loc.lng], loc.zoom, {
+    animate: true,
+    duration: 1.2
+  });
+}
+
+// document.querySelector(".towns").addEventListener("click", e => {
+//   //const id = 
+  
+//   console.log('town'+ 
+
+//     e.target.dataset.location
+//   )
+//   //if (!id) return;
+
+//   goToLocation(id);
+// });
+
+
+
+
+// #1 LOCATION FILTER + MAP FLY
+locationsForm.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+
+  const location = chip.dataset.location;
+
+  // UI
+  locationsForm
+    .querySelectorAll(".chip")
+    .forEach(c => c.classList.remove("active"));
+  chip.classList.add("active");
+
+  // State
   selected.location = location;
 
-  // If "auto" is selected, request GPS permission
-  if (location === "auto") {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        console.log("User's location:", latitude, longitude);
+  // ✅ MAP
+  flyToLocation(location);
 
-        const locations = [
-          { name: "Aalborg", lat: 57.0488, lon: 9.9217 },
-          { name: "Vestergade", lat: 56.162939, lon: 10.203921 },
-          { name: "Fredensgade", lat: 56.162939, lon: 10.203921 },
-          { name: "Kolding", lat: 55.4904, lon: 9.4722 },
-        ];
+  // URL
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
 
-        let closestLocation = locations[0];
-        let minDistance = Number.MAX_VALUE;
-
-        locations.forEach((loc) => {
-          const distance = Math.sqrt(
-            Math.pow(latitude - loc.lat, 2) + Math.pow(longitude - loc.lon, 2)
-          );
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestLocation = loc;
-          }
-        });
-
-        selected.location = closestLocation.name;
-        console.log("Closest location:", selected.location);
-        filterGames();
-      });
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  } else {
-    filterGames();
-  }
-
-  // Hide dropdown after selection
-  locationDropdown.style.display = "none";
+  // Filter
+  filterGames();
 });
+
+

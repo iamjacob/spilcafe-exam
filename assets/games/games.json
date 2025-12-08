@@ -11,7 +11,7 @@
     "rating": 4.0,
     "age": 8,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "A3",
     "available": true,
     "rules": "Spillerne bevæger sig rundt på brættet og køber ejendomme. Når andre lander på dine felter, betaler de leje. Den sidste spiller, der ikke går bankerot, vinder. Start med 30.000 kr. og få 4.000 kr. hver gang du passerer START. Byg huse og hoteller for at øge lejen. Særlige felter inkluderer Fængsel, Gratis Parkering og forskellige skattekort."
@@ -28,7 +28,7 @@
     "rating": 4.1,
     "age": 6,
     "difficulty": "Let",
-    "location": "Fredensgade",
+    "location": "aarhus-fredensgade",
     "shelf": "B7",
     "available": true,
     "rules": "Hver spiller skal få sine fire brikker hele vejen rundt på brættet. Du skal slå en sekser for at komme ud, og modstandere kan slå dine brikker hjem. Vinderen er den, der først får alle brikker i mål. Brikker starter i hver spilers hjørne og skal rundt om hele brættet. Hvis du lander på samme felt som en modstander, slås deres brik hjem til start. Du får en ekstra tur hvis du slår en sekser."
@@ -79,7 +79,7 @@
     "rating": 3.9,
     "age": 6,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "E2",
     "available": true,
     "rules": "Spillerne slår fem terninger og forsøger at lave kombinationer som små og store straight, fuldt hus og yatzy. Vinderen er den, der har flest point til sidst. Du har tre kast per tur og kan gemme terninger mellem kastene. Forskellige kombinationer giver forskellige point: yatzy (50 point), fuldt hus (25 point), straight (30-40 point). Prøv at få mindst 63 point i den øvre sektion for at få 50 bonuspoint."
@@ -96,7 +96,7 @@
     "rating": 4.8,
     "age": 8,
     "difficulty": "Mellem",
-    "location": "Fredensgade",
+    "location": "aarhus-fredensgade",
     "shelf": "F6",
     "available": false,
     "rules": "Spillerne styrer hver deres hær af brikker med unikke bevægelser. Målet er at sætte modstanderens konge skakmat. Spillet kræver planlægning og strategi. Hver briktype har sine egne regler: tårnet flytter i lige linjer, løberen diagonalt, springeren i L-form. Kongen kan kun flytte ét felt ad gangen. Specialtræk inkluderer rokade og en passant. Planlæg flere træk frem og beskyt din konge."
@@ -147,7 +147,7 @@
     "rating": 3.8,
     "age": 7,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "I2",
     "available": false,
     "rules": "Spillerne lægger kort og placerer brikker på et bræt med spillekort. Målet er at få rækker af fem på stribe. Strategi og samarbejde er vigtigt. Brætet viser alle spillekort undtagen knægtene. Når du spiller et kort, placerer du en brik på det tilsvarende felt. Knægte er vildkort der kan fjerne modstandernes brikker. Først til to sekvenser vinder!"
@@ -164,7 +164,7 @@
     "rating": 4.3,
     "age": 10,
     "difficulty": "Mellem",
-    "location": "Fredensgade",
+    "location": "aarhus-fredensgade",
     "shelf": "J4",
     "available": true,
     "rules": "Målet er verdensherredømme. Spillerne flytter hære, angriber og forsvarer områder. Terningekast afgør slagene, men strategi er afgørende. Start med at placere dine hære strategisk på kontinenterne. Angrib nabolande for at udvide dit territorium. Saml kontinentbonusser for ekstra forstærkninger. Brug missionskort til alternative sejrsbetingelser. Allianser kan være nyttige, men husk at der kun kan være én vinder!"
@@ -215,7 +215,7 @@
     "rating": 4.5,
     "age": 10,
     "difficulty": "Mellem",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "M5",
     "available": true,
     "rules": "Spillerne samler ressourcer og bygger veje, byer og bebyggelser. Handel og forhandling er vigtige elementer. Den første til 10 sejrspoint vinder. Rul terningerne for at få ressourcer baseret på dine bebyggelsers placering. Byg veje for at udvide og byer for flere ressourcer. Opgrader byer til storbyer for endnu flere point. Handl med andre spillere og brug udviklingskorttene strategisk."
@@ -232,7 +232,7 @@
     "rating": 4.4,
     "age": 8,
     "difficulty": "Let",
-    "location": "Fredensgade",
+    "location": "aarhus-fredensgade",
     "shelf": "N6",
     "available": true,
     "rules": "Spillerne samler togvogne og bygger ruter mellem byer i Europa. Længere ruter giver flere point, og hemmelige billetkort afgør sejr. Saml kort i samme farve for at bygge jernbaneruter på brættet. Hver rute har en specifik længde og farve. Opfyld dine destinationskort for bonuspoint, men pas på - ufuldførte ruter giver minuspoint! Tunneller og færger har særlige regler."
@@ -283,7 +283,7 @@
     "rating": 4.2,
     "age": 8,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "Q8",
     "available": true,
     "rules": "Spillerne vælger farvede fliser fra fabrikker og placerer dem på deres bræt. Point gives for mønstre og rækker. Fejl giver minuspoint. Vælg alle fliser af samme farve fra en fabrik og læg resten i midten. Placer fliserne i rækker på din væg, men pas på - overskydende fliser giver minuspoint! Når en række er fyldt, flytter du én flise til væggen. Få point for sammenhængende fliser og færdiggjorte rækker/kolonner."
@@ -300,7 +300,7 @@
     "rating": 4.1,
     "age": 8,
     "difficulty": "Let",
-    "location": "Fredensgade",
+    "location": "aarhus-fredensgade",
     "shelf": "R5",
     "available": true,
     "rules": "Fortælleren vælger et kort og giver et hint. De andre spiller kort, og alle gætter på fortællerens kort. Point afhænger af, hvor mange der gætter rigtigt. Fortælleren skal give et hint der får nogle, men ikke alle, til at gætte rigtigt. Alle andre spillere vælger et kort fra deres hånd der passer til hintet. Gæt på hvilket kort der var fortællerens. For mange eller for få rigtige gæt giver fortælleren ingen point!"
@@ -351,7 +351,7 @@
     "rating": 4.1,
     "age": 10,
     "difficulty": "Mellem",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "U1",
     "available": true,
     "rules": "Spillerne laver ord på brættet ved hjælp af bogstavbrikker. Forskellige bogstaver har forskellige pointværdier. Præmiefelter multiplicerer ord- eller bogstavscore. Hver spiller starter med 7 brikker og trækker nye efter hver tur. Ord skal være gyldige danske ord og kan bygges både vandret og lodret. Første ord skal placeres gennem midterfeltet. Spilleren med flest point når alle brikker er brugt vinder."
@@ -368,7 +368,7 @@
     "rating": 4.0,
     "age": 7,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "V2",
     "available": true,
     "rules": "Spillerne trækker kort indtil nogen trækker et Exploding Kitten og taber, medmindre de har et Defuse-kort. Brug handlingskort til at undgå at trække Exploding Kittens. Strategiske kort kan ændre spillets gang og hjælpe dig med at overleve. Brug See The Future kort til at se de næste kort. Skip kort lader dig springe din tur over. Attack kort tvinger næste spiller til at tage to ture. Den sidste spiller tilbage vinder!"
@@ -385,7 +385,7 @@
     "rating": 4.3,
     "age": 15,
     "difficulty": "Mellem",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "W5",
     "available": true,
     "rules": "Hold eller enkeltspillere vælger kategorier og besvarer spørgsmål. Brug Bezzer-brikker til at stjæle point fra modstandere eller Zwap-brikker til at bytte kategorier. Taktik er lige så vigtigt som viden. Flyt din brik fremad baseret på rigtige svar. Vælg strategisk mellem dine stærke og svage kategorier. Bezzer en modstander hvis du tror de svarer forkert. Zwap kategorier for at få bedre emner. Første til målet vinder!"
@@ -402,7 +402,7 @@
     "rating": 4.2,
     "age": 18,
     "difficulty": "Let",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
     "shelf": "X8",
     "available": true,
     "rules": "En spiller læser et spørgsmålskort op, og de andre vælger deres sjoveste svarkort. Spilleren vælger det bedste svar, og vinderen får et point. Morsomt og upassende for voksne. Hver runde har en ny dommer der vælger vinderkortet. Vælg dine svar baseret på dommerens humor. Sort, dansk humor er central for spillet. Spillet fortsætter indtil én spiller har vundet et aftalt antal point. Perfekt til fester!"
@@ -419,7 +419,24 @@
     "rating": 4.4,
     "age": 17,
     "difficulty": "Mellem",
-    "location": "Vestergade",
+    "location": "aarhus-vestergade",
+    "shelf": "Y3",
+    "available": false,
+    "rules": "Spillere er hemmeligt liberale eller fascister. Liberale skal stoppe fascisterne fra at vedtage love eller eliminere Secret Hitler. Fascisterne arbejder skjult sammen. Præsidenten nominerer en kansler, og alle stemmer. Hvis godkendt, vedtager de love sammen. Liberale skal finde og stoppe Hitler før det er for sent. Brug logik og observation til at identificere fascisterne. Kommunikation og bluff er nøglen til sejr!"
+  },
+  {
+    "id": 26,
+    "title": "Secret Hitler",
+    "description": "Socialt deduktionsspil om politik og forrædderi.",
+    "image": "./assets/img/games/secret-hitler.webp",
+    "genre": "Party",
+    "playtime": 45,
+    "players": { "min": 5, "max": 10 },
+    "language": "English",
+    "rating": 4.4,
+    "age": 17,
+    "difficulty": "Mellem",
+    "location": "odense",
     "shelf": "Y3",
     "available": false,
     "rules": "Spillere er hemmeligt liberale eller fascister. Liberale skal stoppe fascisterne fra at vedtage love eller eliminere Secret Hitler. Fascisterne arbejder skjult sammen. Præsidenten nominerer en kansler, og alle stemmer. Hvis godkendt, vedtager de love sammen. Liberale skal finde og stoppe Hitler før det er for sent. Brug logik og observation til at identificere fascisterne. Kommunikation og bluff er nøglen til sejr!"

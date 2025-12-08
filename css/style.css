@@ -12,11 +12,10 @@
   src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-}
-
-body {
+  
   font-family: 'JetBrains Mono', monospace;
-} */
+}*/
+ 
 
 * {
     margin: 0;
@@ -28,11 +27,26 @@ body {
 
 }
 
+body,
+html {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    margin: 0;
+    font-family: sans-serif;
+}
+
 /* VARIABLER! */
 :root{
     --primary-color: #FF4747;
     --primary-color-light: #FF9292;
     --background-color: #F2F2F2;
+    --background-color-2: #F2F2F295;
     --text-color: #000000;
     --card-background: #FFFFFF;
 }
@@ -139,7 +153,7 @@ h1 {
 .filters {
     display: flex;
     justify-content: space-around;
-    padding: 8px;
+    margin: 8px;
     overflow-x: auto;
     gap: 8px;
     position: relative;
@@ -154,6 +168,7 @@ h1 {
     /* background: #FF9292; */
     /*active FF4747*/
     display: flex;
+    gap:4px;
     align-items: center;
 text-decoration: none;
     border-radius: 16px;
@@ -182,7 +197,7 @@ text-decoration: none;
 /*CARD COMPONENT*/
 main {
     padding: 16px;
-    padding-top: 85px;
+    padding-top: 160px;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -259,12 +274,13 @@ main::after {
 .card__info {
     display: flex;
     width: 100%;
-    justify-content: space-between;
-    items-align: center;
+    font-weight: 700;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .card__infoTAG {
-    font-size: 11px;
+    font-size: 12px;
     color: #6f6f6f;
     display: flex;
     align-items: center;
@@ -665,7 +681,7 @@ main::after {
 
 #form-wrapper {
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
 }
@@ -909,8 +925,8 @@ form:invalid + button {
     position: fixed;
     bottom: 60px;
     right: 16px;
-    background-color: #FF4747;
-    color: #fff;
+    background-color: var(--background-color-2);
+    color: #333;
     padding: 8px 12px;
     border-radius: 16px;
     font-size: 12px;
@@ -921,4 +937,30 @@ form:invalid + button {
     fill:#000000;
     width: 44px;
     height: 44px;
+}
+
+
+.locationData ,
+.playersForm ,
+.locationsForm ,
+.timeForm ,
+.difficultyForm ,
+.genreForm ,
+.sortForm{
+  display:none;
+      justify-content: center;
+      min-height: 120px;
+    padding: 20px 0px;
+}
+
+.genreForm ,
+.sortForm{
+  justify-content: space-around;
+  height:70px;
+}
+
+.towns{
+    overflow-x: auto;
+    gap: 8px;
+    margin: 10px 10px;
 }
