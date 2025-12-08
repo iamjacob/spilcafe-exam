@@ -22,8 +22,8 @@ const locations = [
   {
     id: "aarhus-vestergade",
     name: "Vestergade",
-    lat: 56.162939,
-    lon: 10.203921,
+    lat: 56.1589,
+    lon: 10.2046,
     zoom: 15
   },
   {

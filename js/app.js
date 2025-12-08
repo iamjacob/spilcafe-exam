@@ -252,9 +252,15 @@ function filterGames() {
     if (!value) return;
 
     switch (filter) {
-      case "genre":
-        filteredGames = filteredGames.filter((game) => game.genre === value);
+      case "genre": {
+        const genre = Array.isArray(value) ? value : [value];
+
+        filteredGames = filteredGames.filter((game) =>
+          genre.includes(game.genre)
+        );
         break;
+      }
+
       case "difficulty":
         filteredGames = filteredGames.filter(
           (game) => game.difficulty === value
@@ -311,14 +317,13 @@ function renderSubChips(filter) {
 
   if (filter == "players") {
     playersForm.style.display = "flex";
-
   } else {
     playersForm.style.display = "none";
   }
 
   if (filter == "difficulty") {
     difficultyForm.style.display = "flex";
-   } else {
+  } else {
     difficultyForm.style.display = "none";
   }
 
@@ -424,6 +429,74 @@ filtersContainer.addEventListener("click", (e) => {
   renderSubChips(filter);
 });
 
+playersForm.addEventListener("change", (e) => {
+  const input = e.target;
+  if (input.name !== "players") return;
+
+  const players = Number(input.value);
+
+  // State
+  selected.players = players;
+
+  // URL
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
+
+  // Filter
+  filterGames();
+});
+
+timeForm.addEventListener("change", (e) => {
+  if (e.target.name !== "time") return;
+
+  selected.time = Number(e.target.value);
+
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
+
+  filterGames();
+});
+
+difficultyForm.addEventListener("change", (e) => {
+  if (e.target.name !== "difficulty") return;
+
+  selected.difficulty = e.target.value;
+
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
+
+  filterGames();
+});
+
+genreForm.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+
+  const genre = chip.dataset.genre;
+
+  // Init
+  if (!Array.isArray(selected.genre)) {
+    selected.genre = [];
+  }
+
+  // Toggle
+  if (selected.genre.includes(genre)) {
+    selected.genre = selected.genre.filter(g => g !== genre);
+    chip.classList.remove("active");
+  } else {
+    selected.genre.push(genre);
+    chip.classList.add("active");
+  }
+
+  // URL
+  const params = new URLSearchParams(selected);
+  params.set("genre", selected.genre.join(","));
+  history.replaceState({}, "", "?" + params.toString());
+
+  filterGames();
+  updateSelectedChips();
+});
+
 function addSelectedChip(contextStore, filter, option) {
   const chipHTML = `
     <div class="sub-chip" data-option="${option}">
@@ -527,9 +600,12 @@ window.addEventListener("popstate", () => {
   let filteredGames = [...allGames];
 
   if (contextStore.genre) {
-    filteredGames = filteredGames.filter(
-      (game) => game.genre === contextStore.genre
-    );
+    const genre = contextStore.genre.split(",");
+    selected.genre = genre;
+
+    document.querySelectorAll(".genreForm .chip").forEach((chip) => {
+      chip.classList.toggle("active", genre.includes(chip.dataset.genre));
+    });
   }
 
   if (contextStore.difficulty) {
@@ -564,9 +640,8 @@ window.addEventListener("popstate", () => {
   }
 
   if (contextStore.location) {
-  flyToLocation(contextStore.location);
-}
-
+    flyToLocation(contextStore.location);
+  }
 
   displayGames(filteredGames);
 });
@@ -865,32 +940,30 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
 const locationCoords = {
   "aarhus-fredensgade": { lat: 56.16294, lng: 10.20392, zoom: 15 },
   "aarhus-vestergade": { lat: 56.1589, lng: 10.2046, zoom: 15 },
-  "odense": { lat: 55.4038, lng: 10.4024, zoom: 13 },
-  "kolding": { lat: 55.4904, lng: 9.4722, zoom: 13 },
-  "aalborg": { lat: 57.0488, lng: 9.9217, zoom: 13 }
+  odense: { lat: 55.4038, lng: 10.4024, zoom: 13 },
+  kolding: { lat: 55.4904, lng: 9.4722, zoom: 13 },
+  aalborg: { lat: 57.0488, lng: 9.9217, zoom: 13 },
 };
-
 
 function flyToLocation(locationKey) {
   const loc = locationCoords[locationKey];
   // locationData.innerText = locationKey.replace("-", " ").toUpperCase();
-  locationData.innerText =
-  locationKey
+  locationData.innerText = locationKey
     .replace(/-/g, " ")
-    .replace(/\b\w/g, c => c.toUpperCase());
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 
   if (!loc || !window.map) return;
 
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
-    duration: 1.2
+    duration: 1.2,
   });
 }
 
 // document.querySelector(".towns").addEventListener("click", e => {
-//   //const id = 
-  
-//   console.log('town'+ 
+//   //const id =
+
+//   console.log('town'+
 
 //     e.target.dataset.location
 //   )
@@ -898,9 +971,6 @@ function flyToLocation(locationKey) {
 
 //   goToLocation(id);
 // });
-
-
-
 
 // #1 LOCATION FILTER + MAP FLY
 locationsForm.addEventListener("click", (e) => {
@@ -912,7 +982,7 @@ locationsForm.addEventListener("click", (e) => {
   // UI
   locationsForm
     .querySelectorAll(".chip")
-    .forEach(c => c.classList.remove("active"));
+    .forEach((c) => c.classList.remove("active"));
   chip.classList.add("active");
 
   // State
@@ -928,5 +998,3 @@ locationsForm.addEventListener("click", (e) => {
   // Filter
   filterGames();
 });
-
-

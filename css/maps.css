@@ -13,3 +13,7 @@
 .leaflet-top.leaflet-left {
     display: none;
 }
+
+.locationsForm{
+    display: none;
+}
