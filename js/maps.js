@@ -57,7 +57,7 @@ const locations = [
 //   "aalborg": { lat: 57.0488, lng: 9.9217, zoom: 13 }
 // };
 
-function makeMap(lat, lon, zoom = 13) {
+function makeMap(lat, lon, zoom = 6) {
   if (!map) {
     map = L.map("map").setView([lat, lon], zoom);
 
@@ -76,32 +76,13 @@ function makeMap(lat, lon, zoom = 13) {
 
       markers.push(marker);
     });
-    // Fix rendering issues when the map container size changes on mobile
-    map.whenReady(() => {
-      // small delay to let mobile browser finish layout (address bar, toolbars)
-      setTimeout(() => {
-        try { map.invalidateSize(); } catch (e) { /* ignore */ }
-      }, 200);
-    });
   }
 
   map.flyTo([lat, lon], zoom, {
-    duration: 4,
-    easeLinearity: 0.25,
+    duration: 8,
+    easeLinearity: 1,
   });
 }
-
-// Ensure map redraws correctly when device orientation or viewport changes
-function ensureMapSize() {
-  if (map) {
-    try { map.invalidateSize(); } catch (e) { /* ignore */ }
-  }
-}
-
-// Listen for common events that require Leaflet to recalculate size
-window.addEventListener('resize', ensureMapSize);
-window.addEventListener('orientationchange', () => setTimeout(ensureMapSize, 300));
-window.addEventListener('pageshow', () => setTimeout(ensureMapSize, 200));
 
 
 function selectTown() {

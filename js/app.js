@@ -990,6 +990,7 @@ const locationCoords = {
   odense: { lat: 55.4038, lng: 10.4024, zoom: 13 },
   kolding: { lat: 55.4904, lng: 9.4722, zoom: 13 },
   aalborg: { lat: 57.0488, lng: 9.9217, zoom: 13 },
+  default: { lat: 56.1629, lng: 10.2039, zoom: 6 },
 };
 
 function flyToLocation(locationKey) {
@@ -1003,21 +1004,9 @@ function flyToLocation(locationKey) {
 
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
-    duration: 1.2,
+    duration: 4,
   });
 }
-
-// document.querySelector(".towns").addEventListener("click", e => {
-//   //const id =
-
-//   console.log('town'+
-
-//     e.target.dataset.location
-//   )
-//   //if (!id) return;
-
-//   goToLocation(id);
-// });
 
 // #1 LOCATION FILTER + MAP FLY
 locationsForm.addEventListener("click", (e) => {

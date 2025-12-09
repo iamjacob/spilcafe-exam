@@ -136,6 +136,7 @@ button svg,
     font-family: "Inter", sans-serif;
     flex: flex-grow;
     flex-grow: 1;
+    width: 100%;
 }
 
 h1 {
@@ -949,4 +950,13 @@ form:invalid + button {
 .genreForm ,
 .sortForm{
   display:none;
+}
+
+.towns, .chips-container{
+    display: flex;
+    overflow-x: scroll;
+    gap: 8px;
+    padding:10px 0px;
+    justify-content: space-around;
+    padding: 4px 0px
 }
