@@ -25,14 +25,14 @@ const resizeObserver = new ResizeObserver(resizeUpdate)
 resizeObserver.observe(document.body)
 window.addEventListener('resize', () => resizeUpdate())
 document.getElementById('roll').addEventListener('click', addDices)
-// document.getElementById('decrease').addEventListener('click', () => {
-//   diceAmount = Math.max(--diceAmount, 1)
-//   document.querySelector('#amount').innerHTML = diceAmount
-// })
-// document.getElementById('increase').addEventListener('click', () => {
-//   diceAmount = Math.min(++diceAmount, 12)
-//   document.querySelector('#amount').innerHTML = diceAmount
-// })
+document.getElementById('decrease').addEventListener('click', () => {
+  diceAmount = Math.max(--diceAmount, 1)
+  document.querySelector('#amount').innerHTML = diceAmount
+})
+document.getElementById('increase').addEventListener('click', () => {
+  diceAmount = Math.min(++diceAmount, 12)
+  document.querySelector('#amount').innerHTML = diceAmount
+})
 
 
 // Physics
