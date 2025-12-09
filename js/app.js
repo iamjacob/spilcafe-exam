@@ -252,6 +252,24 @@ function filterGames() {
     if (!value) return;
 
     switch (filter) {
+      case "sort":
+        // Apply sort based on the sort value
+        switch (value) {
+          case "A-Z":
+            filteredGames.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case "Z-A":
+            filteredGames.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+          case "Rating":
+            filteredGames.sort((a, b) => b.rating - a.rating);
+            break;
+          case "År":
+            // Sort by year (assuming there's a year property or using release year)
+            filteredGames.sort((a, b) => (b.year || 0) - (a.year || 0));
+            break;
+        }
+        break;
       case "genre": {
         const genre = Array.isArray(value) ? value : [value];
 
@@ -304,16 +322,22 @@ function renderSubChips(filter) {
   const activeChip = document.querySelector(`.chip[data-filter="${filter}"]`);
   const chipRect = activeChip.getBoundingClientRect();
 
-  if (!filters[filter]) {
-    subChipsContainer.style.display = "none";
-    return;
+  hideAllSubForms();
+
+  if (filter === "location" && locationsForm) {
+    locationsForm.style.display = "flex";
   }
 
-  if (filter == "location") {
-    locationsForm.style.display = "flex";
-  } else {
-    locationsForm.style.display = "none";
-  }
+if (!filters[filter] && filter !== "location") {
+  subChipsContainer.style.display = "none";
+  return;
+}
+
+  // if (filter == "location") {
+  //   locationsForm.style.display = "flex";
+  // } else {
+  //   locationsForm.style.display = "none";
+  // }
 
   if (filter == "players") {
     playersForm.style.display = "flex";
@@ -408,26 +432,27 @@ filtersContainer.addEventListener("click", (e) => {
   if (!chip) return;
 
   const filter = chip.dataset.filter;
-  //   console.log("Clicked chip:", chip);
-  //   console.log("Filter retrieved:", filter);
 
-  // Remove .active from all chips
-  document
-    .querySelectorAll(".chip")
-    .forEach((c) => c.classList.remove("active"));
+  if (activeFilter === filter) {
+    activeFilter = null;
+    hideAllSubForms();
+    return;
+  }
 
-  // // Toggle open/close of the current filter
-  // if (activeFilter === filter) {
-  //   activeFilter = null;
-  //   subChipsContainer.style.display = "none";
-
-  //   return;
-  // }
-
-  chip.classList.add("active");
   activeFilter = filter;
   renderSubChips(filter);
 });
+
+function hideAllSubForms() {
+  if (locationsForm) locationsForm.style.display = "none";
+  if (playersForm) playersForm.style.display = "none";
+  if (difficultyForm) difficultyForm.style.display = "none";
+  if (timeForm) timeForm.style.display = "none";
+  if (genreForm) genreForm.style.display = "none";
+  if (sortForm) sortForm.style.display = "none";
+}
+
+
 
 playersForm.addEventListener("change", (e) => {
   const input = e.target;
@@ -496,6 +521,28 @@ genreForm.addEventListener("click", (e) => {
   filterGames();
   updateSelectedChips();
 });
+
+sortForm.addEventListener("click", e => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+
+  const sort = chip.dataset.sort;
+  //const sort = chip.dataset.option;
+
+
+  selected.sort = sort;
+
+  sortForm.querySelectorAll(".chip")
+    .forEach(c => c.classList.remove("active"));
+
+  chip.classList.add("active");
+
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
+
+  filterGames();
+});
+
 
 function addSelectedChip(contextStore, filter, option) {
   const chipHTML = `
