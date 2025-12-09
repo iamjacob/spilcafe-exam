@@ -950,13 +950,24 @@ form:invalid + button {
 .genreForm ,
 .sortForm{
   display:none;
+  justify-content: space-around;
+  height:fit-content;
 }
 
-.towns, .chips-container{
-    display: flex;
-    overflow-x: scroll;
-    gap: 8px;
-    padding:10px 0px;
-    justify-content: space-around;
-    padding: 4px 0px
+.active{
+  border-color: var(--primary-color);
 }
+
+.playersForm{
+    height: 132px;
+    padding: 16px 0px;
+}
+
+.towns{
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding:16px 0px;
+    justify-content: space-around;
+}
+

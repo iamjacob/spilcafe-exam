@@ -122,20 +122,20 @@
             <!-- location -->
             <section id="app" class="locationsForm" style="display: flex;flex-direction: column;">
                 <div id="map"></div>
-                <div class="chips-container towns" style="display:flex;overflow-x: scroll;gap:8px;padding: 0 10px;">
+                <div class="chips-container towns">
+                    <div class="chip" data-location="alle">Alle</div>
                     <div class="chip" data-location="aarhus-fredensgade">Aarhus Fredensgade</div>
                     <div class="chip" data-location="aarhus-vestergade">Aarhus Vestergade</div>
-                    <div class="chip" data-location="odense">Odense</div>
-                    <div class="chip" data-location="kolding">Kolding</div>
                     <div class="chip" data-location="aalborg">Aalborg</div>
-                    <div class="chip" data-location="default">Alle</div>
+                    <div class="chip" data-location="kolding">Kolding</div>
+                    <div class="chip" data-location="odense">Odense</div>
                 </div>
             </section>
 
             <!-- players -->
             <div class="playersForm">
-                <h2 id="form-title">Hvor mange antal spillere?</h2>
                 <form method="GET">
+                    <h2 id="form-title">Hvor mange antal spillere?</h2>
                     <div id="debt-amount-slider">
                         <input type="radio" name="players" id="p-1" value="2" required>
                         <label for="p-1" data-debt-amount="2"></label>
@@ -155,8 +155,8 @@
 
             <!-- time -->
             <div class="timeForm">
-                <h2>Spilletid (maks)</h2>
                 <form>
+                    <h2>Spilletid (maks)</h2>
 
                     <input type="radio" name="time" id="time-20" value="20">
                     <label for="time-20">20 min</label>
@@ -175,8 +175,8 @@
 
             <!-- difficulty -->
             <div class="difficultyForm">
-                <h2>Sværhedsgrad</h2>
                 <form>
+                    <h2>Sværhedsgrad</h2>
 
                     <input type="radio" name="difficulty" id="diff-let" value="Let">
                     <label for="diff-let"><svg width="41" height="21" viewBox="0 0 41 21" fill="none"
@@ -216,9 +216,9 @@
                 </form>
             </div>
 
-            <div class="genreForm" style="flex-direction:column;">
-                <h2>Genre</h2>
+            <div class="genreForm">
                 <div class="chips">
+                    <h2>Genre</h2>
                     <div class="chip" data-genre="Familie">Familie</div>
                     <div class="chip" data-genre="Strategi">Strategi</div>
                     <div class="chip" data-genre="Party">Party</div>
@@ -231,8 +231,8 @@
 
 
             <div class="sortForm">
-                <h2>Genre</h2>
-
+                
+                <h2>Sortering</h2>
                 <div class="chip" data-sort="A-Z">A-Z</div>
                 <div class="chip" data-sort="Z-A">Z-A</div>
                 <div class="chip" data-sort="År">År</div>

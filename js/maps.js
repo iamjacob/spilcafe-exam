@@ -15,6 +15,7 @@ const locations = [
   {
     id: "aalborg",
     name: "Aalborg",
+    address: "Bredgade 3, 9000 Aalborg",
     lat: 57.0488,
     lon: 9.9217,
     zoom: 13
@@ -22,6 +23,7 @@ const locations = [
   {
     id: "aarhus-vestergade",
     name: "Vestergade",
+    address: "Vestergade 58A, 8000 Aarhus",
     lat: 56.1589,
     lon: 10.2046,
     zoom: 15
@@ -29,6 +31,7 @@ const locations = [
   {
     id: "aarhus-fredensgade",
     name: "Fredensgade",
+    address: "Fredensgade 38, 8000 Aarhus",
     lat: 56.162939,
     lon: 10.203921,
     zoom: 15
@@ -36,6 +39,7 @@ const locations = [
   {
     id: "kolding",
     name: "Kolding",
+    address: "Jernbanegade 11, 6000 Kolding",
     lat: 55.4904,
     lon: 9.4722,
     zoom: 13
@@ -43,6 +47,7 @@ const locations = [
   {
     id: "odense",
     name: "Odense",
+    address: "Slotsgade 26A, 5000 Odense",
     lat: 55.4038,
     lon: 10.4024,
     zoom: 13
@@ -72,7 +77,7 @@ function makeMap(lat, lon, zoom = 6) {
     locations.forEach(loc => {
       const marker = L.marker([loc.lat, loc.lon], { icon: greenIcon })
         .addTo(map)
-        .bindPopup(loc.name);
+        .bindPopup(loc.address);
 
       markers.push(marker);
     });
@@ -103,4 +108,4 @@ function selectTown() {
 
 
 // Init with Aarhus (Vestergade)
-makeMap(56.162939, 10.203921);
+makeMap(56.4, 10.203921);

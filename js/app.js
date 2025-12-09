@@ -990,8 +990,9 @@ const locationCoords = {
   odense: { lat: 55.4038, lng: 10.4024, zoom: 13 },
   kolding: { lat: 55.4904, lng: 9.4722, zoom: 13 },
   aalborg: { lat: 57.0488, lng: 9.9217, zoom: 13 },
-  default: { lat: 56.1629, lng: 10.2039, zoom: 6 },
+  alle: { lat: 56.4, lng: 10.2039, zoom: 6 },  
 };
+
 
 function flyToLocation(locationKey) {
   const loc = locationCoords[locationKey];
@@ -1004,7 +1005,7 @@ function flyToLocation(locationKey) {
 
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
-    duration: 4,
+    duration: 2,
   });
 }
 
@@ -1023,6 +1024,12 @@ locationsForm.addEventListener("click", (e) => {
 
   // State
   selected.location = location;
+
+  if(selected.location == "alle"){
+    selected.location = null;
+  }
+
+
 
   // ✅ MAP
   flyToLocation(location);
