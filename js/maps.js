@@ -67,6 +67,8 @@ function makeMap(lat, lon, zoom = 6) {
     map = L.map("map").setView([lat, lon], zoom);
     // Expose map on window so other scripts can call methods like invalidateSize()
     window.map = map;
+    // Also expose the factory so other scripts can initialize the map lazily
+    window.makeMap = makeMap;
 
 
     //map in black and white
@@ -109,5 +111,6 @@ function selectTown() {
 }
 
 
-// Init with Aarhus (Vestergade)
-makeMap(56.4, 10.203921);
+// NOTE: Do NOT auto-init the map here. Initialize lazily when the locations
+// panel is shown to avoid Leaflet rendering issues when the container is hidden.
+// If you want to auto-init, call `makeMap(56.4, 10.203921)` from another script.

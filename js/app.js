@@ -344,8 +344,15 @@ function renderSubChips(filter) {
 
   if (filter === "location" && locationsForm) {
     locationsForm.style.display = "flex";
-    // Ensure map recalculates size after becoming visible (fixes mobile display)
-    if (window.map && typeof window.map.invalidateSize === "function") {
+    // If map hasn't been created yet, initialize it lazily. Otherwise invalidate size.
+    if (!window.map && typeof window.makeMap === "function") {
+      // default center for init (Aarhus-ish)
+      window.makeMap(56.4, 10.203921, 13);
+      // give Leaflet a moment to render tiles
+      setTimeout(() => {
+        if (window.map && typeof window.map.invalidateSize === "function") window.map.invalidateSize();
+      }, 200);
+    } else if (window.map && typeof window.map.invalidateSize === "function") {
       setTimeout(() => window.map.invalidateSize(), 100);
     }
   }
