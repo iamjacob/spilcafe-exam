@@ -369,39 +369,39 @@ if (!filters[filter] && filter !== "location") {
     sortForm.style.display = "none";
   }
 
-  subChipsContainer.style.display = "flex";
-  subChipsContainer.style.position = "absolute";
-  subChipsContainer.style.top = `${chipRect.bottom + window.scrollY}px`;
-  subChipsContainer.style.left = `${chipRect.left + window.scrollX + 40}px`;
+  // subChipsContainer.style.display = "flex";
+  // subChipsContainer.style.position = "absolute";
+  // subChipsContainer.style.top = `${chipRect.bottom + window.scrollY}px`;
+  // subChipsContainer.style.left = `${chipRect.left + window.scrollX + 40}px`;
 
-  subChipsContainer.innerHTML = filters[filter]
-    .map(
-      (opt) => `
-      <div 
-        class="sub-chip ${selected[filter] === opt ? "active" : ""}" 
-        data-option="${opt}"
-      >${opt}</div>
-    `
-    )
-    .join("");
+  // subChipsContainer.innerHTML = filters[filter]
+  //   .map(
+  //     (opt) => `
+  //     <div 
+  //       class="sub-chip ${selected[filter] === opt ? "active" : ""}" 
+  //       data-option="${opt}"
+  //     >${opt}</div>
+  //   `
+  //   )
+  //   .join("");
 
-  // Add listener for sub-chip clicks
-  subChipsContainer.onclick = (e) => {
-    const opt = e.target.closest(".sub-chip");
-    if (!opt) return;
-    selected[filter] = opt.dataset.option;
-    console.log("Selected option:", selected[filter]);
-    renderSubChips(filter);
+  // // Add listener for sub-chip clicks
+  // subChipsContainer.onclick = (e) => {
+  //   const opt = e.target.closest(".sub-chip");
+  //   if (!opt) return;
+  //   selected[filter] = opt.dataset.option;
+  //   console.log("Selected option:", selected[filter]);
+  //   renderSubChips(filter);
 
-    // Optionally sync with URL
-    const params = new URLSearchParams(selected);
-    history.replaceState({}, "", "?" + params.toString());
+  //   // Optionally sync with URL
+  //   const params = new URLSearchParams(selected);
+  //   history.replaceState({}, "", "?" + params.toString());
 
-    // Trigger filtering
-    filterGames();
-    updateSelectedChips();
-    subChipsContainer.style.display = "none";
-  };
+  //   // Trigger filtering
+  //   filterGames();
+  //   updateSelectedChips();
+  //   subChipsContainer.style.display = "none";
+  // };
 }
 
 const filters = {

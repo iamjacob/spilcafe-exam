@@ -76,6 +76,13 @@ function makeMap(lat, lon, zoom = 13) {
 
       markers.push(marker);
     });
+    // Fix rendering issues when the map container size changes on mobile
+    map.whenReady(() => {
+      // small delay to let mobile browser finish layout (address bar, toolbars)
+      setTimeout(() => {
+        try { map.invalidateSize(); } catch (e) { /* ignore */ }
+      }, 200);
+    });
   }
 
   map.flyTo([lat, lon], zoom, {
@@ -83,6 +90,18 @@ function makeMap(lat, lon, zoom = 13) {
     easeLinearity: 0.25,
   });
 }
+
+// Ensure map redraws correctly when device orientation or viewport changes
+function ensureMapSize() {
+  if (map) {
+    try { map.invalidateSize(); } catch (e) { /* ignore */ }
+  }
+}
+
+// Listen for common events that require Leaflet to recalculate size
+window.addEventListener('resize', ensureMapSize);
+window.addEventListener('orientationchange', () => setTimeout(ensureMapSize, 300));
+window.addEventListener('pageshow', () => setTimeout(ensureMapSize, 200));
 
 
 function selectTown() {
