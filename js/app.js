@@ -345,8 +345,8 @@ function renderSubChips(filter) {
   if (filter === "location" && locationsForm) {
     locationsForm.style.display = "flex";
     // Ensure map recalculates size after becoming visible (fixes mobile display)
-    if (window.map && typeof map.invalidateSize === "function") {
-      setTimeout(() => map.invalidateSize(), 100);
+    if (window.map && typeof window.map.invalidateSize === "function") {
+      setTimeout(() => window.map.invalidateSize(), 100);
     }
   }
 

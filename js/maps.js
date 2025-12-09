@@ -65,6 +65,8 @@ const locations = [
 function makeMap(lat, lon, zoom = 6) {
   if (!map) {
     map = L.map("map").setView([lat, lon], zoom);
+    // Expose map on window so other scripts can call methods like invalidateSize()
+    window.map = map;
 
 
     //map in black and white
