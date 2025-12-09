@@ -433,6 +433,9 @@ filtersContainer.addEventListener("click", (e) => {
 
   const filter = chip.dataset.filter;
 
+  // remove active from all filter chips first (so only the opened one is active)
+  filtersContainer.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+
   if (activeFilter === filter) {
     activeFilter = null;
     hideAllSubForms();
@@ -440,6 +443,7 @@ filtersContainer.addEventListener("click", (e) => {
   }
 
   activeFilter = filter;
+  chip.classList.add("active"); // mark the opened chip as active
   renderSubChips(filter);
 });
 
@@ -450,6 +454,11 @@ function hideAllSubForms() {
   if (timeForm) timeForm.style.display = "none";
   if (genreForm) genreForm.style.display = "none";
   if (sortForm) sortForm.style.display = "none";
+
+  // also clear active state from filter chips when hiding
+  // if (filtersContainer) {
+  //   filtersContainer.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+  // }
 }
 
 
@@ -996,18 +1005,37 @@ const locationCoords = {
 
 function flyToLocation(locationKey) {
   const loc = locationCoords[locationKey];
-  // locationData.innerText = locationKey.replace("-", " ").toUpperCase();
   locationData.innerText = locationKey
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
 
-  if (!loc || !window.map) return;
+  if (!loc) return;
+
+  // If map not ready yet, retry shortly (handles mobile load/timing differences)
+  if (!window.map) {
+    console.warn("Map not ready yet — retrying flyTo in 300ms");
+    setTimeout(() => flyToLocation(locationKey), 300);
+    return;
+  }
+
+  // Ensure map size is recalculated (fixes mobile / hidden-container issues)
+  if (typeof map.invalidateSize === "function") {
+    // small delay lets layout settle on mobile before invalidating
+    setTimeout(() => map.invalidateSize(), 120);
+  }
 
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
     duration: 2,
   });
 }
+// ...existing code...
+// keep map responsive on orientation change
+window.addEventListener("orientationchange", () => {
+  if (window.map && typeof map.invalidateSize === "function") {
+    setTimeout(() => map.invalidateSize(), 250);
+  }
+});
 
 // #1 LOCATION FILTER + MAP FLY
 locationsForm.addEventListener("click", (e) => {

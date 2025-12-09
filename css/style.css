@@ -956,6 +956,8 @@ form:invalid + button {
 
 .active{
   border-color: var(--primary-color);
+  font-weight:600;
+  /* background-color: var(--primary-color-light); */
 }
 
 .playersForm{
