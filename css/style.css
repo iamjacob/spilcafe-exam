@@ -170,7 +170,7 @@ h1 {
 /*sub-filters-under*/
 /* width */
 ::-webkit-scrollbar {
-  width: 1px;
+  height: 1px;
 }
 
 /* Track */
@@ -1144,4 +1144,6 @@ form:invalid+button {
   padding: 8px 16px;
 
 }
-
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
