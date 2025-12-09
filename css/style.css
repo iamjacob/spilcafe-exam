@@ -57,8 +57,7 @@ html {
 /* RESPONSIVE! */
 
 header {
-  padding: 0px 8px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -66,6 +65,8 @@ header {
 }
 
 .header-top {
+  padding: 0px 8px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -161,9 +162,30 @@ h1 {
   position: relative;
 }
 
-.filters::-webkit-scrollbar {
+/* .filters::-webkit-scrollbar {
   display: none;
-  /* hide scrollbar (Chrome, Safari) */
+  /* hide scrollbar (Chrome, Safari) 
+} */
+
+/*sub-filters-under*/
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #FF4747; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FF4747; 
 }
 
 .chip {
@@ -200,7 +222,7 @@ h1 {
 /*CARD COMPONENT*/
 main {
   padding: 16px;
-  padding-top: 160px;
+  padding-top: 128px;
   display: flex;
   width: 100%;
   flex-wrap: wrap;

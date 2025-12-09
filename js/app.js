@@ -371,33 +371,33 @@ if (!filters[filter] && filter !== "location") {
 }
 
   if (filter == "players") {
-    playersForm.style.display = "flex";
+    playersForm.style.height = "flex";
   } else {
-    playersForm.style.display = "none";
+    playersForm.style.height = "0px";
   }
 
   if (filter == "difficulty") {
     difficultyForm.style.display = "flex";
   } else {
-    difficultyForm.style.display = "none";
+    difficultyForm.style.height = "0px";
   }
 
   if (filter == "time") {
     timeForm.style.display = "flex";
   } else {
-    timeForm.style.display = "none";
+    timeForm.style.height = "0px";
   }
 
   if (filter == "genre") {
     genreForm.style.display = "flex";
   } else {
-    genreForm.style.display = "none";
+    genreForm.style.height = "0px";
   }
 
   if (filter == "sort") {
     sortForm.style.display = "flex";
   } else {
-    sortForm.style.display = "none";
+    sortForm.style.height = "0px";
   }
 
   // subChipsContainer.style.display = "flex";

@@ -24,7 +24,7 @@
   <div class="panel">
     <button id="decrease">-</button>
     <div>
-      <p>AMOUNT: <span id="amount">6</span></p>
+      <p>AMOUNT: <span id="amount">2</span></p>
       <button id="roll"><img src="./assets/img/logo.webp" width="92" height="70" alt="logo">
 </button>
     </div>
@@ -87,13 +87,20 @@ body section .panel,
 button section .panel {
   display: flex;
   gap: 1.5rem;
+
 }
+button section .panel button,
+button section .panel div{
+padding:1rem;
+  color: #3c390f;
+  font-weight: 700;
+}
+
 body section p,
 button section p {
   margin-bottom: -0.5rem;
   text-align: center;
-  color: #3c390f;
-  opacity: 0.5;
+  color:#3c390f;
 }
 body section button,
 button section button {

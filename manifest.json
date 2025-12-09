@@ -1,8 +1,8 @@
 {
   "name": "Spilcafe Exam",
   "short_name": "Spilcafe",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/spilcafe-exam/",
+  "scope": "/spilcafe-exam/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#bf171c",
