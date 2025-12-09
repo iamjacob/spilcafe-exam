@@ -14,6 +14,29 @@ const genreForm = document.querySelector(".genreForm");
 const sortForm = document.querySelector(".sortForm");
 const mainHolder = document.querySelector("main");
 
+const radioInputs = document.querySelectorAll('input[type="radio"]');
+        const underline = document.querySelector('.underline');
+        
+        function moveUnderline() {
+            const checked = document.querySelector('input[type="radio"]:checked');
+            const label = document.querySelector(`label[for="${checked.id}"]`);
+            const container = document.querySelector('.radio-group');
+            
+            const labelRect = label.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const leftPos = labelRect.left - containerRect.left;
+            
+            underline.style.width = labelRect.width + 'px';
+            underline.style.transform = `translateX(${leftPos}px)`;
+        }
+        
+        radioInputs.forEach(input => {
+            input.addEventListener('change', moveUnderline);
+        });
+        
+        // Initialize position
+        moveUnderline();
+
 async function getGames() {
   try {
     // console.log("🌐 Henter alle spil fra JSON...");
@@ -204,11 +227,6 @@ function renderRatingStars(rating) {
 <path d="M2.27778 0H14.7222C15.1937 0 15.6459 0.187301 15.9793 0.520699C16.3127 0.854097 16.5 1.30628 16.5 1.77778V14.2222C16.5 14.6937 16.3127 15.1459 15.9793 15.4793C15.6459 15.8127 15.1937 16 14.7222 16H2.27778C1.80628 16 1.3541 15.8127 1.0207 15.4793C0.687301 15.1459 0.5 14.6937 0.5 14.2222V1.77778C0.5 1.30628 0.687301 0.854097 1.0207 0.520699C1.3541 0.187301 1.80628 0 2.27778 0ZM4.05556 1.77778C3.58406 1.77778 3.13187 1.96508 2.79848 2.29848C2.46508 2.63187 2.27778 3.08406 2.27778 3.55556C2.27778 4.02705 2.46508 4.47924 2.79848 4.81263C3.13187 5.14603 3.58406 5.33333 4.05556 5.33333C4.52705 5.33333 4.97924 5.14603 5.31263 4.81263C5.64603 4.47924 5.83333 4.02705 5.83333 3.55556C5.83333 3.08406 5.64603 2.63187 5.31263 2.29848C4.97924 1.96508 4.52705 1.77778 4.05556 1.77778ZM12.9444 10.6667C12.4729 10.6667 12.0208 10.854 11.6874 11.1874C11.354 11.5208 11.1667 11.9729 11.1667 12.4444C11.1667 12.9159 11.354 13.3681 11.6874 13.7015C12.0208 14.0349 12.4729 14.2222 12.9444 14.2222C13.4159 14.2222 13.8681 14.0349 14.2015 13.7015C14.5349 13.3681 14.7222 12.9159 14.7222 12.4444C14.7222 11.9729 14.5349 11.5208 14.2015 11.1874C13.8681 10.854 13.4159 10.6667 12.9444 10.6667ZM12.9444 1.77778C12.4729 1.77778 12.0208 1.96508 11.6874 2.29848C11.354 2.63187 11.1667 3.08406 11.1667 3.55556C11.1667 4.02705 11.354 4.47924 11.6874 4.81263C12.0208 5.14603 12.4729 5.33333 12.9444 5.33333C13.4159 5.33333 13.8681 5.14603 14.2015 4.81263C14.5349 4.47924 14.7222 4.02705 14.7222 3.55556C14.7222 3.08406 14.5349 2.63187 14.2015 2.29848C13.8681 1.96508 13.4159 1.77778 12.9444 1.77778ZM4.05556 10.6667C3.58406 10.6667 3.13187 10.854 2.79848 11.1874C2.46508 11.5208 2.27778 11.9729 2.27778 12.4444C2.27778 12.9159 2.46508 13.3681 2.79848 13.7015C3.13187 14.0349 3.58406 14.2222 4.05556 14.2222C4.52705 14.2222 4.97924 14.0349 5.31263 13.7015C5.64603 13.3681 5.83333 12.9159 5.83333 12.4444C5.83333 11.9729 5.64603 11.5208 5.31263 11.1874C4.97924 10.854 4.52705 10.6667 4.05556 10.6667Z" fill="${
     rating >= 4 ? "black" : "#9F9F9F"
   }"/>
-            // Add overlay--active class after rendering for animation
-            setTimeout(() => {
-            const overlay = document.getElementById("overlay");
-            if (overlay) overlay.classList.add("overlay--active");
-            }, 10);
 </svg>
 
 
@@ -336,12 +354,6 @@ if (!filters[filter] && filter !== "location") {
   subChipsContainer.style.display = "none";
   return;
 }
-
-  // if (filter == "location") {
-  //   locationsForm.style.display = "flex";
-  // } else {
-  //   locationsForm.style.display = "none";
-  // }
 
   if (filter == "players") {
     playersForm.style.display = "flex";
@@ -532,7 +544,7 @@ genreForm.addEventListener("click", (e) => {
   history.replaceState({}, "", "?" + params.toString());
 
   filterGames();
-  updateSelectedChips();
+  //updateSelectedChips();
 });
 
 sortForm.addEventListener("click", e => {
@@ -600,7 +612,7 @@ function updateSelectedChips() {
 
 function removeChip(filter) {
   delete selected[filter];
-  updateSelectedChips();
+  //updateSelectedChips();
   filterGames();
 
   // Update URL parameters
@@ -1078,3 +1090,26 @@ locationsForm.addEventListener("click", (e) => {
   // Filter
   filterGames();
 });
+
+
+// Keep label.chip in the difficulty group in sync with the checked radio
+function syncDifficultyActive() {
+  if (!difficultyForm) return;
+  // remove active from all chips in this form
+  difficultyForm.querySelectorAll("label.chip").forEach((l) => {l.classList.remove("active");l.classList.remove("rating-dices")});
+  const checked = document.querySelector('input[name="difficulty"]:checked');
+  if (!checked) return;
+  const label = difficultyForm.querySelector(`label[for="${checked.id}"]`);
+  if (label) label.classList.add("active");
+  if (label) label.classList.add("rating-dices");
+  
+}
+
+// Initialize state on load
+syncDifficultyActive();
+
+// Update when a radio changes (clicking label will check the radio and trigger change)
+difficultyForm.addEventListener("change", (e) => {
+  if (e.target && e.target.name === "difficulty") syncDifficultyActive();
+});
+

@@ -32,3 +32,17 @@ Særligt flyTo funktionen fra leaflet er meget lækker! :)
 
 Har lavet en service worker så man kan slå med terninger offline :)
 / Se det er noget en telefon ikke har standard, som den burde.
+
+
+
+Optimeret til mobil app så åben venligst i mobile view.
+
+- Mikro animation på terninger.
+
+- flyTo på kortet på forsiden.
+
+- Terninger.
+
+- Filtre forbedret visuelt.
+
+- Flyer.

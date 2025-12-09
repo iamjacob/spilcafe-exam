@@ -816,8 +816,8 @@ form #debt-amount-slider label::after {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border: 2px solid #000;
   background: #fff;
   border-radius: 50%;
@@ -845,8 +845,9 @@ form #debt-amount-slider input:checked+label::before {
 }
 
 form #debt-amount-slider input:checked+label::after {
-  border-width: 4px;
-  transform: translate(-50%, -50%) scale(0.75);
+  border-width: 2px;
+  border-color: var(--primary-color);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 form #debt-amount-slider input:checked~#debt-amount-pos {
@@ -1005,7 +1006,7 @@ form:invalid+button {
 
 .chip-info {
   position: fixed;
-  bottom: 60px;
+  bottom: 16px;
   right: 16px;
   background-color: var(--background-color-2);
   color: #333;
@@ -1031,7 +1032,6 @@ form:invalid+button {
 .sortForm {
   display: none;
   justify-content: space-around;
-  height: fit-content;
 }
 
 .active {
@@ -1040,13 +1040,13 @@ form:invalid+button {
   /* background-color: var(--primary-color-light); */
 }
 
-.locationsForm{
+.locationsForm {
   padding: 0px 16px;
 }
 
 
 .playersForm {
-  height: 132px;
+  height: 100px;
   padding: 16px 0px;
 }
 
@@ -1058,3 +1058,67 @@ form:invalid+button {
   justify-content: space-between;
 }
 
+.timeForm h2 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+}
+
+.timeForm .radio-group {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+}
+
+.timeForm input[type="radio"] {
+  display: none;
+}
+
+.timeForm label {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  color: #666;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.timeForm label:hover {
+  color: #333;
+}
+
+.timeForm input[type="radio"]:checked+label {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.timeForm .underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.timeForm form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.difficultyForm form {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 8px 0;
+  gap:4px;
+}
+
+.genreForm .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.sortForm {
+  padding: 8px 16px;
+
+}
