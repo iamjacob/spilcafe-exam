@@ -5,17 +5,15 @@ Eksamen 2025 / 1st. Semester / Multimedie / Jacob Gawad
 
 ## PRÆSENTATION :: (slide i figma eller hjemmekodet?)
 
-## FIGMA :: https://www.figma.com/design/8pyGaDrUyhrhjBpgmXvAwr/Spilcafeen--Copy
+## FIGMA :: https://www.figma.com/design/8pyGaDrUyhrhjBpgmXvAwr/Spilcafeen--Copy (Se 'flyer - processen' & 'flyeren - completed')
 
 ## GITHUB :: https://github.com/iamjacob/spilcafe-exam
 
 ## GITHUB PAGES :: https://iamjacob.github.io/spilcafe-exam/ 
 
-## Link til docs (Brugerundersøgelse) ::
+## Link til OOUX :: https://docs.google.com/document/d/1h5pPlYg7xd9H3cWZ3q0mT_FNL70gl1hxupQzHFO3Fkc/edit?usp=sharing
 
-### ALLE SPIL :: https://codepen.io/jacobgDK/pen/VYayJrX
-
-
+## Link til tidligere OOUX :: https://docs.google.com/document/d/1lqlUyiaJBki2XD24tNYpUCa5Lh6rbgQIO6n-rIUf-_k/edit?tab=t.0
 Jeg har arbejdet særligt med frontend, for at øge brugervenligheden.
 
 Overordnet har jeg også flyttet så meget kode som muligt fra js over til HTML.

@@ -72,7 +72,7 @@ orbit.dampingFactor = 0.05
 orbit.rotateSpeed = 0.5
 orbit.enablePan = false
 orbit.enableZoom = false
-orbit.addEventListener('end', resetCameraPosition)
+//orbit.addEventListener('end', resetCameraPosition)
 orbit.update()
 
 // Dice
