@@ -1,6 +1,6 @@
 "use strict"
 
-        import * as THREE from "https://esm.sh/three"
+import * as THREE from "https://esm.sh/three"
 import WebGL from "https://esm.sh/three/addons/capabilities/WebGL.js"
 import * as OIMO from "https://esm.sh/oimo"
 import gsap from "https://esm.sh/gsap"
@@ -98,6 +98,7 @@ function createDice(x, y, z) {
           size: [2, 2, 2], 
           pos: [x, y, z],
           rot: [Math.floor(Math.random() * 360), Math.floor(Math.random() * 360), Math.floor(Math.random() * 360)],
+          //rot: [0,Math.random() * 360,0],
           move: true,
           density: 2,
           friction: 0.5,

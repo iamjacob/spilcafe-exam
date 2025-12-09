@@ -319,13 +319,17 @@ function renderSubChips(filter) {
   //   console.log("Rendering sub-chips for filter:", filter);
   //   console.log("Available options:", filters[filter]);
 
-  const activeChip = document.querySelector(`.chip[data-filter="${filter}"]`);
-  const chipRect = activeChip.getBoundingClientRect();
+  // const activeChip = document.querySelector(`.chip[data-filter="${filter}"]`);
+  // const chipRect = activeChip.getBoundingClientRect();
 
   hideAllSubForms();
 
   if (filter === "location" && locationsForm) {
     locationsForm.style.display = "flex";
+    // Ensure map recalculates size after becoming visible (fixes mobile display)
+    if (window.map && typeof map.invalidateSize === "function") {
+      setTimeout(() => map.invalidateSize(), 100);
+    }
   }
 
 if (!filters[filter] && filter !== "location") {
@@ -1027,7 +1031,12 @@ function flyToLocation(locationKey) {
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
     duration: 2,
+    keepBuffer: 6,        // more tiles outside view
+    updateWhenIdle: false,
+    updateWhenZooming: false
   });
+
+  
 }
 // ...existing code...
 // keep map responsive on orientation change
