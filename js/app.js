@@ -344,16 +344,24 @@ function renderSubChips(filter) {
 
   if (filter === "location" && locationsForm) {
     locationsForm.style.display = "flex";
+    console.log("[DEBUG] Opening location filter. window.map exists?", !!window.map);
     // If map hasn't been created yet, initialize it lazily. Otherwise invalidate size.
     if (!window.map && typeof window.makeMap === "function") {
+      console.log("[DEBUG] Initializing map lazily...");
       // default center for init (Aarhus-ish)
       window.makeMap(56.4, 10.203921, 13);
       // give Leaflet a moment to render tiles
       setTimeout(() => {
-        if (window.map && typeof window.map.invalidateSize === "function") window.map.invalidateSize();
+        if (window.map && typeof window.map.invalidateSize === "function") {
+          console.log("[DEBUG] Calling invalidateSize after init");
+          window.map.invalidateSize();
+        }
       }, 200);
     } else if (window.map && typeof window.map.invalidateSize === "function") {
+      console.log("[DEBUG] Map exists, calling invalidateSize");
       setTimeout(() => window.map.invalidateSize(), 100);
+    } else {
+      console.log("[DEBUG] Map not found and makeMap not available!");
     }
   }
 
