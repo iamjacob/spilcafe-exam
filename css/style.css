@@ -169,7 +169,7 @@ h1 {
 
 /*sub-filters-under*/
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   height: 1px;
 }
 
@@ -186,7 +186,7 @@ h1 {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4747; 
-}
+} */
 
 .chip {
   /* background: #FF9292; */
