@@ -342,29 +342,6 @@ function renderSubChips(filter) {
 
   hideAllSubForms();
 
-  if (filter === "location" && locationsForm) {
-    locationsForm.style.display = "flex";
-    console.log("[DEBUG] Opening location filter. window.map exists?", !!window.map);
-    // If map hasn't been created yet, initialize it lazily. Otherwise invalidate size.
-    if (!window.map && typeof window.makeMap === "function") {
-      console.log("[DEBUG] Initializing map lazily...");
-      // default center for init (Aarhus-ish)
-      window.makeMap(56.4, 10.203921, 13);
-      // give Leaflet a moment to render tiles
-      setTimeout(() => {
-        if (window.map && typeof window.map.invalidateSize === "function") {
-          console.log("[DEBUG] Calling invalidateSize after init");
-          window.map.invalidateSize();
-        }
-      }, 200);
-    } else if (window.map && typeof window.map.invalidateSize === "function") {
-      console.log("[DEBUG] Map exists, calling invalidateSize");
-      setTimeout(() => window.map.invalidateSize(), 100);
-    } else {
-      console.log("[DEBUG] Map not found and makeMap not available!");
-    }
-  }
-
 if (!filters[filter] && filter !== "location") {
   subChipsContainer.style.display = "none";
   return;
@@ -399,40 +376,38 @@ if (!filters[filter] && filter !== "location") {
   } else {
     sortForm.style.height = "0px";
   }
+}
 
-  // subChipsContainer.style.display = "flex";
-  // subChipsContainer.style.position = "absolute";
-  // subChipsContainer.style.top = `${chipRect.bottom + window.scrollY}px`;
-  // subChipsContainer.style.left = `${chipRect.left + window.scrollX + 40}px`;
+function makeMap(lat, lon, zoom = 6) {
+  if (!map) {
+    map = L.map("map").setView([lat, lon], zoom);
+    // Expose map on window so other scripts can call methods like invalidateSize()
+    window.map = map;
+    // Also expose the factory so other scripts can initialize the map lazily
+    window.makeMap = makeMap;
 
-  // subChipsContainer.innerHTML = filters[filter]
-  //   .map(
-  //     (opt) => `
-  //     <div 
-  //       class="sub-chip ${selected[filter] === opt ? "active" : ""}" 
-  //       data-option="${opt}"
-  //     >${opt}</div>
-  //   `
-  //   )
-  //   .join("");
 
-  // // Add listener for sub-chip clicks
-  // subChipsContainer.onclick = (e) => {
-  //   const opt = e.target.closest(".sub-chip");
-  //   if (!opt) return;
-  //   selected[filter] = opt.dataset.option;
-  //   console.log("Selected option:", selected[filter]);
-  //   renderSubChips(filter);
+    //map in black and white
+    //L.tileLayer("https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png", {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-  //   // Optionally sync with URL
-  //   const params = new URLSearchParams(selected);
-  //   history.replaceState({}, "", "?" + params.toString());
+    // Add markers once
+    locations.forEach(loc => {
+      const marker = L.marker([loc.lat, loc.lon], { icon: greenIcon })
+        .addTo(map)
+        .bindPopup(loc.address);
 
-  //   // Trigger filtering
-  //   filterGames();
-  //   updateSelectedChips();
-  //   subChipsContainer.style.display = "none";
-  // };
+      markers.push(marker);
+    });
+  }
+
+  map.flyTo([lat, lon], zoom, {
+    duration: 8,
+    easeLinearity: 1,
+  });
 }
 
 const filters = {
@@ -440,15 +415,7 @@ const filters = {
   genre: ["Familiespil", "Quiz", "Strategi", "Terninger", "Kortspil"],
   difficulty: ["Let", "Mellem", "Svær"],
   time: ["20 min.", "30 min.", "60 min.", "120 min."],
-  sort: ["A-Z", "Z-A", "År", "Rating"],
-  // location: [
-  //   "Vestergade",
-  //   "Fredensgade",
-  //   "Aalborg",
-  //   "Kolding",
-  //   "auto",
-  //   "other",
-  // ],
+  sort: ["A-Z", "Z-A", "År", "Rating"]
 };
 
 let activeFilter = null;
@@ -485,11 +452,6 @@ function hideAllSubForms() {
   if (timeForm) timeForm.style.display = "none";
   if (genreForm) genreForm.style.display = "none";
   if (sortForm) sortForm.style.display = "none";
-
-  // also clear active state from filter chips when hiding
-  // if (filtersContainer) {
-  //   filtersContainer.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-  // }
 }
 
 
@@ -1049,11 +1011,11 @@ function flyToLocation(locationKey) {
     return;
   }
 
-  // Ensure map size is recalculated (fixes mobile / hidden-container issues)
-  if (typeof map.invalidateSize === "function") {
-    // small delay lets layout settle on mobile before invalidating
-    setTimeout(() => map.invalidateSize(), 120);
-  }
+  // // Ensure map size is recalculated (fixes mobile / hidden-container issues)
+  // if (typeof map.invalidateSize === "function") {
+  //   // small delay lets layout settle on mobile before invalidating
+  //   setTimeout(() => map.invalidateSize(), 120);
+  // }
 
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
