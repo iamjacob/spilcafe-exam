@@ -57,6 +57,6 @@ I Figma kan man se **før/efter**, processen og den færdige version.
 Optimeret til mobil – åbn venligst i **mobile view**.
 
 - Mikroanimation på terninger  
-- Terninger som spil og mikroanimationer  
+- Terninger som spil 
 - Filtre forbedret visuelt  
 - Flyer integreret
