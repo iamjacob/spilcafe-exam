@@ -15,27 +15,27 @@ const sortForm = document.querySelector(".sortForm");
 const mainHolder = document.querySelector("main");
 
 const radioInputs = document.querySelectorAll('input[type="radio"]');
-        const underline = document.querySelector('.underline');
-        
-        function moveUnderline() {
-            const checked = document.querySelector('input[type="radio"]:checked');
-            const label = document.querySelector(`label[for="${checked.id}"]`);
-            const container = document.querySelector('.radio-group');
-            
-            const labelRect = label.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            const leftPos = labelRect.left - containerRect.left;
-            
-            underline.style.width = labelRect.width + 'px';
-            underline.style.transform = `translateX(${leftPos}px)`;
-        }
-        
-        radioInputs.forEach(input => {
-            input.addEventListener('change', moveUnderline);
-        });
-        
-        // Initialize position
-        moveUnderline();
+const underline = document.querySelector(".underline");
+
+function moveUnderline() {
+  const checked = document.querySelector('input[type="radio"]:checked');
+  const label = document.querySelector(`label[for="${checked.id}"]`);
+  const container = document.querySelector(".radio-group");
+
+  const labelRect = label.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+  const leftPos = labelRect.left - containerRect.left;
+
+  underline.style.width = labelRect.width + "px";
+  underline.style.transform = `translateX(${leftPos}px)`;
+}
+
+radioInputs.forEach((input) => {
+  input.addEventListener("change", moveUnderline);
+});
+
+// Initialize position
+moveUnderline();
 
 async function getGames() {
   try {
@@ -319,7 +319,10 @@ function filterGames() {
         );
         break;
       case "location":
-        filteredGames = filteredGames.filter((game) => game.location === value);
+        if (value === "alle") break;
+        filteredGames = filteredGames.filter(
+          (game) => norm(game.location) === value
+        );
         break;
     }
   });
@@ -342,10 +345,10 @@ function renderSubChips(filter) {
 
   hideAllSubForms();
 
-if (!filters[filter] && filter !== "location") {
-  subChipsContainer.style.display = "none";
-  return;
-}
+  if (!filters[filter] && filter !== "location") {
+    subChipsContainer.style.display = "none";
+    return;
+  }
 
   if (filter == "players") {
     playersForm.style.height = "flex";
@@ -386,16 +389,16 @@ function makeMap(lat, lon, zoom = 6) {
     // Also expose the factory so other scripts can initialize the map lazily
     window.makeMap = makeMap;
 
-
     //map in black and white
     //L.tileLayer("https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png", {
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     // Add markers once
-    locations.forEach(loc => {
+    locations.forEach((loc) => {
       const marker = L.marker([loc.lat, loc.lon], { icon: greenIcon })
         .addTo(map)
         .bindPopup(loc.address);
@@ -415,7 +418,7 @@ const filters = {
   genre: ["Familiespil", "Quiz", "Strategi", "Terninger", "Kortspil"],
   difficulty: ["Let", "Mellem", "Svær"],
   time: ["20 min.", "30 min.", "60 min.", "120 min."],
-  sort: ["A-Z", "Z-A", "År", "Rating"]
+  sort: ["A-Z", "Z-A", "År", "Rating"],
 };
 
 let activeFilter = null;
@@ -432,7 +435,9 @@ filtersContainer.addEventListener("click", (e) => {
   const filter = chip.dataset.filter;
 
   // remove active from all filter chips first (so only the opened one is active)
-  filtersContainer.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+  filtersContainer
+    .querySelectorAll(".chip")
+    .forEach((c) => c.classList.remove("active"));
 
   if (activeFilter === filter) {
     activeFilter = null;
@@ -453,8 +458,6 @@ function hideAllSubForms() {
   if (genreForm) genreForm.style.display = "none";
   if (sortForm) sortForm.style.display = "none";
 }
-
-
 
 playersForm.addEventListener("change", (e) => {
   const input = e.target;
@@ -508,7 +511,7 @@ genreForm.addEventListener("click", (e) => {
 
   // Toggle
   if (selected.genre.includes(genre)) {
-    selected.genre = selected.genre.filter(g => g !== genre);
+    selected.genre = selected.genre.filter((g) => g !== genre);
     chip.classList.remove("active");
   } else {
     selected.genre.push(genre);
@@ -524,18 +527,18 @@ genreForm.addEventListener("click", (e) => {
   //updateSelectedChips();
 });
 
-sortForm.addEventListener("click", e => {
+sortForm.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
 
   const sort = chip.dataset.sort;
   //const sort = chip.dataset.option;
 
-
   selected.sort = sort;
 
-  sortForm.querySelectorAll(".chip")
-    .forEach(c => c.classList.remove("active"));
+  sortForm
+    .querySelectorAll(".chip")
+    .forEach((c) => c.classList.remove("active"));
 
   chip.classList.add("active");
 
@@ -544,7 +547,6 @@ sortForm.addEventListener("click", e => {
 
   filterGames();
 });
-
 
 function addSelectedChip(contextStore, filter, option) {
   const chipHTML = `
@@ -992,9 +994,12 @@ const locationCoords = {
   odense: { lat: 55.4038, lng: 10.4024, zoom: 13 },
   kolding: { lat: 55.4904, lng: 9.4722, zoom: 13 },
   aalborg: { lat: 57.0488, lng: 9.9217, zoom: 13 },
-  alle: { lat: 56.4, lng: 10.2039, zoom: 6 },  
+  alle: { lat: 56.4, lng: 10.2039, zoom: 6 },
 };
 
+function norm(str) {
+  return str?.toLowerCase().trim();
+}
 
 function flyToLocation(locationKey) {
   const loc = locationCoords[locationKey];
@@ -1020,12 +1025,10 @@ function flyToLocation(locationKey) {
   map.flyTo([loc.lat, loc.lng], loc.zoom, {
     animate: true,
     duration: 2,
-    keepBuffer: 6,        // more tiles outside view
+    keepBuffer: 6, // more tiles outside view
     updateWhenIdle: false,
-    updateWhenZooming: false
+    updateWhenZooming: false,
   });
-
-  
 }
 // ...existing code...
 // keep map responsive on orientation change
@@ -1051,11 +1054,9 @@ locationsForm.addEventListener("click", (e) => {
   // State
   selected.location = location;
 
-  if(selected.location == "alle"){
+  if (selected.location == "alle") {
     selected.location = null;
   }
-
-
 
   // ✅ MAP
   flyToLocation(location);
@@ -1068,18 +1069,19 @@ locationsForm.addEventListener("click", (e) => {
   filterGames();
 });
 
-
 // Keep label.chip in the difficulty group in sync with the checked radio
 function syncDifficultyActive() {
   if (!difficultyForm) return;
   // remove active from all chips in this form
-  difficultyForm.querySelectorAll("label.chip").forEach((l) => {l.classList.remove("active");l.classList.remove("rating-dices")});
+  difficultyForm.querySelectorAll("label.chip").forEach((l) => {
+    l.classList.remove("active");
+    l.classList.remove("rating-dices");
+  });
   const checked = document.querySelector('input[name="difficulty"]:checked');
   if (!checked) return;
   const label = difficultyForm.querySelector(`label[for="${checked.id}"]`);
   if (label) label.classList.add("active");
   if (label) label.classList.add("rating-dices");
-  
 }
 
 // Initialize state on load
@@ -1089,4 +1091,3 @@ syncDifficultyActive();
 difficultyForm.addEventListener("change", (e) => {
   if (e.target && e.target.name === "difficulty") syncDifficultyActive();
 });
-

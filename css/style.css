@@ -57,7 +57,7 @@ html {
 /* RESPONSIVE! */
 
 header {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
   position: fixed;
   z-index: 100;
   width: 100%;
