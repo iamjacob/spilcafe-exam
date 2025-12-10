@@ -168,22 +168,18 @@ h1 {
 } */
 
 /*sub-filters-under*/
-/* width */
 /* ::-webkit-scrollbar {
   height: 1px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #fff; 
 }
  
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #FF4747; 
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4747; 
 } */
