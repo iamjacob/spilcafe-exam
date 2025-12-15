@@ -156,11 +156,20 @@ directionalLight.shadow.bias = -0.0005
 // Fog
 //scene.fog = new THREE.FogExp2(0xffffff, 0.01)
 
+// function removeDices() {
+//   dices.forEach(dice => {
+//     scene.remove(dice.model)
+//     world.clear()
+//   })
+//   dices = []
+// }
+
 function removeDices() {
   dices.forEach(dice => {
     scene.remove(dice.model)
-    world.clear()
   })
+
+  world.clear() // ← ONLY ONCE
   dices = []
 }
 
