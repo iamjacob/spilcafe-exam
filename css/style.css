@@ -536,10 +536,9 @@ main::after {
   border-radius: 8px;
 }
 
-.chip-dropdown::-webkit-scrollbar {
+/* .chip-dropdown::-webkit-scrollbar {
   display: none;
-  /* hide scrollbar (Chrome, Safari) */
-}
+} */
 
 /* Invisible overlay for sub-filters dropdown */
 .sub-filters-overlay {

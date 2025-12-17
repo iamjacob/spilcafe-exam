@@ -8,6 +8,8 @@
 ========================= */
 let map; // FIX: was used before declaration
 const markers = []; // FIX: markers.push(...) used but not declared
+let markersLayer = null;
+
 
 let allGames = []; // Declare allGames globally to access it in displayDrawer
 let resultater = document.getElementById("results");
@@ -312,7 +314,7 @@ function filterGames() {
       case "location":
         if (value === "alle") break;
         filteredGames = filteredGames.filter(
-          (game) => game.location === value
+          (game) => norm(game.location) === norm(value)
         );
         break;
     }
@@ -324,10 +326,47 @@ function filterGames() {
 function renderSubChips(filter) {
   hideAllSubForms();
 
-  if (!filters[filter] && filter !== "location") {
-    subChipsContainer.style.display = "none";
-    return;
+  if (filter == "location") {
+    locationsForm.style.display = "flex";
+  }else{
+    locationsForm.style.display = "none";
   }
+
+  
+// #1 LOCATION FILTER + MAP FLY
+locationsForm?.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+
+  const location = chip.dataset.location;
+
+const coords = locationCoords[location];
+if (coords) {
+  makeMap(coords.lat, coords.lng, coords.zoom);
+  flyToLocation(location);
+}
+
+
+  locationsForm
+    .querySelectorAll(".chip")
+    .forEach((c) => c.classList.remove("active"));
+  chip.classList.add("active");
+
+  selected.location = location;
+
+  if (selected.location == "alle") {
+    selected.location = null;
+  }
+
+  flyToLocation(location);
+
+  const params = new URLSearchParams(selected);
+  history.replaceState({}, "", "?" + params.toString());
+
+  filterGames();
+});
+
+
 
   // FIX: was height="flex" (invalid). Use display.
   if (filter == "players") {
@@ -361,6 +400,14 @@ function renderSubChips(filter) {
   }
 }
 
+const greenIcon = L.icon({
+  iconUrl: "/assets/img/logo.webp", // 🔥 absolute path
+  iconSize: [50, 37],
+  iconAnchor: [25, 37], // 🔥 THIS IS REQUIRED
+  popupAnchor: [0, -37],
+});
+
+
 function makeMap(lat, lon, zoom = 6) {
   if (!map) {
     map = L.map("map").setView([lat, lon], zoom);
@@ -374,16 +421,21 @@ function makeMap(lat, lon, zoom = 6) {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
+    const locationsCooords = {
+  "aarhus-fredensgade": { lat: 56.16294, lng: 10.20392, zoom: 15 , address: "Fredensgade 38, 8000 Aarhus"},
+  "aarhus-vestergade": { lat: 56.1589, lng: 10.2046, zoom: 15 , address: "Vestergade 29, 8000 Aarhus"},
+  "odense": { lat: 55.4038, lng: 10.4024, zoom: 13 ,  address: "Slotsgade 26A, 5000 Odense"},
+  "kolding": { lat: 55.4904, lng: 9.4722, zoom: 13 , address: "Jernbanegade 11, 6000 Kolding"},
+  "aalborg": { lat: 57.0488, lng: 9.9217, zoom: 13 , address: "Østerågade 5, 9000 Aalborg" }
+};
     // Add markers once (guard if locations not defined)
-    if (typeof locations !== "undefined" && Array.isArray(locations)) {
-      locations.forEach((loc) => {
-        const marker = L.marker([loc.lat, loc.lon], { icon: greenIcon })
+      Object.values(locationsCooords).forEach((loc) => {
+        const marker = L.marker([loc.lat, loc.lng], { icon: greenIcon })
           .addTo(map)
           .bindPopup(loc.address);
 
         markers.push(marker);
       });
-    }
 
     return; // FIX: don't flyTo immediately after setView
   }
@@ -593,7 +645,7 @@ window.addEventListener("popstate", () => {
 
   if (contextStore.difficulty) {
     filteredGames = filteredGames.filter(
-      (game) => game.difficulty === contextStore.difficulty
+      (game) => norm(game.location) === norm(contextStore.location)
     );
   }
 
@@ -914,8 +966,17 @@ window.addEventListener("orientationchange", () => {
 locationsForm?.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
-
+  
+  
   const location = chip.dataset.location;
+  
+  const coords = locationCoords[location];
+  makeMap(coords.lat, coords.lng, coords.zoom);
+  
+  if (coords) {
+    flyToLocation(location);
+}
+
 
   locationsForm
     .querySelectorAll(".chip")
@@ -935,6 +996,9 @@ locationsForm?.addEventListener("click", (e) => {
 
   filterGames();
 });
+
+
+
 
 // Keep label.chip in the difficulty group in sync with the checked radio
 function syncDifficultyActive() {
@@ -960,3 +1024,5 @@ syncDifficultyActive();
 difficultyForm?.addEventListener("change", (e) => {
   if (e.target && e.target.name === "difficulty") syncDifficultyActive();
 });
+
+
